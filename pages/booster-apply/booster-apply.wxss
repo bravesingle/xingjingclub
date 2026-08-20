@@ -1,0 +1,50 @@
+/* pages/booster-apply/booster-apply.wxss 打手入驻申请私有样式 */
+
+/* 说明卡 */
+.apply-tip {
+  background: linear-gradient(135deg, rgba(255, 211, 77, 0.12), rgba(255, 169, 64, 0.06));
+  border: 2rpx solid rgba(255, 211, 77, 0.25);
+}
+
+.apply-tip-text {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+/* 纵向表单单元（擅长分类 / 备注） */
+.apply-cell {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.apply-cell .form-label {
+  width: 100%;
+  margin-bottom: 16rpx;
+}
+
+/* 擅长分类多选 */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  padding: 12rpx 28rpx;
+  border-radius: 34rpx;
+  border: 2rpx solid var(--line);
+  background: var(--bg-card-2);
+  color: var(--text-sub);
+  font-size: 26rpx;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.category-item-on {
+  border-color: var(--gold);
+  background: rgba(255, 211, 77, 0.12);
+  color: var(--gold);
+}
+
+.apply-placeholder {
+  color: var(--text-dim);
+}

@@ -1,0 +1,104 @@
+/* pages/login/login.wxss 登录页私有样式 */
+
+.login-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: calc(200rpx + env(safe-area-inset-bottom));
+}
+
+/* 品牌区 */
+.brand-area {
+  padding: 88rpx 0 48rpx;
+  text-align: center;
+}
+
+.brand-title {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 6rpx;
+}
+
+.brand-slogan {
+  margin-top: 12rpx;
+  letter-spacing: 4rpx;
+}
+
+/* 表单卡 */
+.login-card {
+  padding: 40rpx 32rpx;
+}
+
+.login-label {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.login-tip {
+  margin: 8rpx 0 28rpx;
+}
+
+.login-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+
+.login-input + .login-input {
+  margin-top: 24rpx;
+}
+
+.input-placeholder {
+  color: var(--text-dim);
+}
+
+/* 协议行 */
+.agree-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 28rpx;
+  padding: 0 8rpx;
+}
+
+.agree-check {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--line);
+  background: var(--bg-card-2);
+  margin-right: 16rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.agree-check-on {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+
+.agree-check-mark {
+  color: #3A2E00;
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.agree-text {
+  flex: 1;
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.agree-link {
+  color: var(--gold);
+}
+
+.login-desc {
+  margin: 24rpx 8rpx 0;
+  font-size: 22rpx;
+  line-height: 1.7;
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "工作台",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "empty": "../../components/empty/empty"
+  }
+}

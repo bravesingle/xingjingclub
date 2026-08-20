@@ -1,0 +1,46 @@
+/* pages/booster-chat/booster-chat.wxss 消息页私有样式 */
+
+.list {
+  padding-bottom: 20rpx;
+}
+
+/* 会话卡片 */
+.session-card {
+  cursor: pointer;
+}
+.session-cover {
+  width: 120rpx;
+  height: 90rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 24rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.session-info {
+  margin-left: 20rpx;
+}
+.session-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+}
+.session-time {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+}
+.session-btn {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+/* 空状态 / 加载中 */
+.empty-wrap {
+  padding: 120rpx 0;
+}
+.loading-tip {
+  padding: 120rpx 0;
+}

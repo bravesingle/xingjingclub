@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/service-list/service-list",
+    "pages/service-detail/service-detail",
+    "pages/order-confirm/order-confirm",
+    "pages/order-pay/order-pay",
+    "pages/order-list/order-list",
+    "pages/order-detail/order-detail",
+    "pages/order-refund/order-refund",
+    "pages/chat/chat",
+    "pages/booster-work/booster-work",
+    "pages/booster-chat/booster-chat",
+    "pages/booster-wallet/booster-wallet",
+    "pages/booster-apply/booster-apply",
+    "pages/balance/balance",
+    "pages/user/user",
+    "pages/login/login"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0F1222",
+    "navigationBarTitleText": "星竞电竞",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0F1222",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8A8FA3",
+    "selectedColor": "#FFD34D",
+    "backgroundColor": "#141830",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order-list/order-list",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/booster-work/booster-work",
+        "text": "工作台"
+      },
+      {
+        "pagePath": "pages/booster-chat/booster-chat",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

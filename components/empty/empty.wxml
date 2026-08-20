@@ -1,0 +1,6 @@
+<view class="empty flex-center column">
+  <view class="empty-icon">{{icon}}</view>
+  <view class="empty-text">{{text}}</view>
+  <view class="empty-sub" wx:if="{{subText}}">{{subText}}</view>
+  <view class="btn btn-ghost btn-sm empty-btn" wx:if="{{btnText}}" catchtap="onAction">{{btnText}}</view>
+</view>

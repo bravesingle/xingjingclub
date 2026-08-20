@@ -1,0 +1,55 @@
+.scard {
+  padding: 0;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+.scard-cover {
+  position: relative;
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scard-cover-text {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 4rpx;
+}
+.scard-mode {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+.scard-body {
+  padding: 20rpx 24rpx 24rpx;
+}
+.scard-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.scard-subtitle {
+  color: var(--text-sub);
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+.scard-tags {
+  margin-top: 14rpx;
+}
+.tag-mini {
+  font-size: 20rpx;
+  padding: 2rpx 12rpx;
+  margin-right: 10rpx;
+}
+.scard-foot {
+  margin-top: 16rpx;
+}
+.scard-meta {
+  color: var(--text-dim);
+  font-size: 22rpx;
+}

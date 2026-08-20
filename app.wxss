@@ -1,0 +1,199 @@
+/* ============================================
+   星竞电竞 · 全局样式（暗色电竞风）
+   页面与组件统一复用以下类，避免重复样式
+   ============================================ */
+
+page {
+  /* 主题变量 */
+  --bg: #0F1222;
+  --bg-card: #171C33;
+  --bg-card-2: #1D2340;
+  --line: #262D4F;
+  --text-main: #E8EAF2;
+  --text-sub: #9AA0B5;
+  --text-dim: #6B7189;
+  --primary: #4D7CFF;
+  --primary-2: #7B5CFF;
+  --gold: #FFD34D;
+  --gold-2: #FFA940;
+  --success: #2ECC71;
+  --danger: #FF5B6A;
+  --warning: #FF9F43;
+
+  background: var(--bg);
+  color: var(--text-main);
+  font-size: 28rpx;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 页面容器 */
+.page {
+  padding: 24rpx 24rpx 40rpx;
+  box-sizing: border-box;
+}
+.safe-bottom {
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* 卡片 */
+.card {
+  background: var(--bg-card);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.card + .card {
+  margin-top: 20rpx;
+}
+
+/* 布局 */
+.flex { display: flex; align-items: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-1 { flex: 1; min-width: 0; }
+.column { display: flex; flex-direction: column; }
+
+/* 文字 */
+.text-sub { color: var(--text-sub); font-size: 26rpx; }
+.text-dim { color: var(--text-dim); font-size: 24rpx; }
+.text-gold { color: var(--gold); }
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+.text-center { text-align: center; }
+.text-bold { font-weight: 600; }
+.text-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin: 32rpx 0 20rpx;
+  display: flex;
+  align-items: center;
+}
+.section-title::before {
+  content: '';
+  width: 8rpx;
+  height: 30rpx;
+  background: var(--gold);
+  border-radius: 4rpx;
+  margin-right: 14rpx;
+}
+
+/* 价格 */
+.price { color: var(--gold); font-weight: 600; }
+.price-symbol { font-size: 24rpx; margin-right: 2rpx; }
+.price-num { font-size: 40rpx; }
+.price-unit { font-size: 22rpx; color: var(--text-dim); font-weight: 400; margin-left: 4rpx; }
+
+/* 标签 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 14rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  background: rgba(77, 124, 255, 0.15);
+  color: var(--primary);
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+}
+.tag-gold { background: rgba(255, 211, 77, 0.15); color: var(--gold); }
+.tag-green { background: rgba(46, 204, 113, 0.15); color: var(--success); }
+
+/* 按钮（view 模拟，规避原生 button 样式） */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 0 40rpx;
+  height: 88rpx;
+  box-sizing: border-box;
+}
+.btn-block { width: 100%; }
+.btn-primary { background: linear-gradient(135deg, #4D7CFF, #7B5CFF); color: #FFFFFF; }
+.btn-gold { background: linear-gradient(135deg, #FFD34D, #FFA940); color: #3A2E00; }
+.btn-ghost { background: transparent; border: 2rpx solid var(--line); color: var(--text-sub); }
+.btn-danger-outline { background: transparent; border: 2rpx solid var(--danger); color: var(--danger); }
+.btn-sm { height: 64rpx; font-size: 26rpx; padding: 0 28rpx; border-radius: 34rpx; }
+.btn-disabled { opacity: 0.5; }
+
+/* 表单 */
+.form-cell { display: flex; align-items: center; padding: 26rpx 0; border-bottom: 2rpx solid var(--line); }
+.form-label { width: 160rpx; color: var(--text-sub); font-size: 28rpx; flex-shrink: 0; }
+.form-value { flex: 1; min-width: 0; }
+.form-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-card-2);
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  color: var(--text-main);
+  font-size: 28rpx;
+}
+.form-textarea {
+  width: 100%;
+  min-height: 140rpx;
+  box-sizing: border-box;
+  background: var(--bg-card-2);
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  color: var(--text-main);
+  font-size: 28rpx;
+}
+
+/* 列表单元 */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid var(--line);
+}
+.cell:last-child { border-bottom: none; }
+.cell-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 4rpx solid var(--text-dim);
+  border-right: 4rpx solid var(--text-dim);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* 分割线 */
+.divider { height: 2rpx; background: var(--line); margin: 20rpx 0; }
+
+/* 订单状态徽标 */
+.status-tag {
+  display: inline-flex;
+  padding: 6rpx 18rpx;
+  border-radius: 24rpx;
+  font-size: 22rpx;
+}
+.st-pending { color: var(--warning); background: rgba(255, 159, 67, 0.15); }
+.st-paid { color: var(--primary); background: rgba(77, 124, 255, 0.15); }
+.st-in_progress { color: var(--primary); background: rgba(77, 124, 255, 0.15); }
+.st-completed { color: var(--success); background: rgba(46, 204, 113, 0.15); }
+.st-cancelled { color: var(--text-dim); background: rgba(107, 113, 137, 0.15); }
+.st-refunding { color: var(--warning); background: rgba(255, 159, 67, 0.15); }
+.st-refunded { color: var(--text-dim); background: rgba(107, 113, 137, 0.15); }
+
+/* 底部固定操作栏 */
+.footer-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-card);
+  border-top: 2rpx solid var(--line);
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+.footer-bar .btn { flex: 1; }
+.footer-bar .btn + .btn { margin-left: 20rpx; }

@@ -1,0 +1,52 @@
+/* pages/order-confirm/order-confirm.wxss 私有样式 */
+
+/* 服务封面 */
+.svc-cover {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.svc-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.svc-sub {
+  margin-top: 6rpx;
+}
+
+.svc-bottom {
+  margin-top: 16rpx;
+}
+
+/* 价格明细 */
+.price-row {
+  padding: 10rpx 0;
+}
+
+.coupon-tip {
+  margin-left: 10rpx;
+}
+
+.total-num {
+  font-size: 44rpx;
+}
+
+/* 备注标题 */
+.remark-title {
+  margin-bottom: 16rpx;
+}
+
+/* footer 占位，避免内容被固定栏遮挡 */
+.footer-placeholder {
+  height: 160rpx;
+}

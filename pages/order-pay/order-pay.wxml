@@ -1,0 +1,66 @@
+<!-- pages/order-pay/order-pay.wxml 收银台 -->
+<view class="page safe-bottom" wx:if="{{order}}">
+  <!-- ① 金额大展示 -->
+  <view class="amount-panel flex-center column">
+    <text class="text-dim">需支付</text>
+    <view class="price">
+      <text class="price-symbol">¥</text>
+      <text class="amount-num">{{amountText}}</text>
+    </view>
+  </view>
+
+  <!-- ② 支付倒计时 -->
+  <view class="card timer-card flex-between" wx:if="{{order.status === 'pending_pay' && !expired}}">
+    <view class="column">
+      <text class="text-sub">请在15分钟内完成支付</text>
+      <text class="text-dim">超时订单将自动取消</text>
+    </view>
+    <countdown endTime="{{order.payExpireAt}}" bind:finish="onCountdownFinish" />
+  </view>
+  <view class="card timer-card flex-between" wx:elif="{{expired}}">
+    <text class="text-danger">订单已超时，无法继续支付</text>
+  </view>
+
+  <!-- ③ 支付方式 -->
+  <view class="card">
+    <view class="pay-item flex-between" data-method="balance" bindtap="onSelectMethod">
+      <view class="flex">
+        <view class="pay-icon pay-icon-balance">余</view>
+        <view class="column">
+          <text class="text-main">余额支付</text>
+          <text class="text-dim">当前余额 ¥{{balanceYuan}}</text>
+        </view>
+      </view>
+      <view class="radio {{payMethod === 'balance' ? 'radio-on' : ''}}"></view>
+    </view>
+    <view class="pay-item flex-between" data-method="wechat" bindtap="onSelectMethod">
+      <view class="flex">
+        <view class="pay-icon pay-icon-wechat">微</view>
+        <view class="column">
+          <text class="text-main">微信支付</text>
+          <text class="text-dim">推荐使用微信支付</text>
+        </view>
+      </view>
+      <view class="radio {{payMethod === 'wechat' ? 'radio-on' : ''}}"></view>
+    </view>
+    <view class="pay-item flex-between" wx:if="{{mockPayEnabled}}" data-method="mock" bindtap="onSelectMethod">
+      <view class="flex">
+        <view class="pay-icon pay-icon-mock">模</view>
+        <view class="column">
+          <text class="text-main">模拟支付（开发）</text>
+          <text class="text-dim">开发阶段免真实支付</text>
+        </view>
+      </view>
+      <view class="radio {{payMethod === 'mock' ? 'radio-on' : ''}}"></view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="footer-placeholder"></view>
+
+  <!-- ④ footer-bar -->
+  <view class="footer-bar">
+    <view class="btn btn-ghost" bindtap="onLater">稍后支付</view>
+    <view class="btn btn-gold {{expired || submitting ? 'btn-disabled' : ''}}" bindtap="doPay">{{submitting ? '支付中…' : '确认支付'}}</view>
+  </view>
+</view>

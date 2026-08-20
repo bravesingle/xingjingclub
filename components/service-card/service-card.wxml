@@ -1,0 +1,21 @@
+<view class="scard card" bindtap="onTap">
+  <view class="scard-cover" style="background:{{service.coverGradient}}">
+    <text class="scard-cover-text">{{service.coverText}}</text>
+    <text class="scard-mode">{{service.modeName}}</text>
+  </view>
+  <view class="scard-body">
+    <view class="scard-title text-ellipsis">{{service.title}}</view>
+    <view class="scard-subtitle text-ellipsis">{{service.subtitle}}</view>
+    <view class="scard-tags">
+      <text class="tag tag-mini" wx:for="{{service.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="scard-foot flex-between">
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="price-num">{{priceText}}</text>
+        <text class="price-unit">/{{service.unitName}}</text>
+      </view>
+      <view class="scard-meta">已售{{service.sales}} · {{service.rating}}分</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,55 @@
+/* pages/service-list/service-list.wxss —— 仅列表页私有样式，其余复用 app.wxss */
+
+.sl-page {
+  padding-top: 16rpx;
+}
+
+.cat-tabs {
+  white-space: nowrap;
+}
+
+.cat-tab {
+  display: inline-block;
+  padding: 14rpx 32rpx;
+  margin-right: 16rpx;
+  border-radius: 36rpx;
+  background: var(--bg-card);
+  color: var(--text-sub);
+  font-size: 28rpx;
+}
+
+.cat-tab-active {
+  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.sort-bar {
+  display: flex;
+  margin-top: 20rpx;
+  padding: 8rpx 24rpx;
+}
+
+.sort-item {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: var(--text-sub);
+  padding: 10rpx 0;
+}
+
+.sort-active {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.sl-list {
+  margin-top: 20rpx;
+}
+
+.sl-tip {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 24rpx;
+  padding: 60rpx 0;
+}

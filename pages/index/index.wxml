@@ -1,0 +1,49 @@
+<view class="page">
+  <!-- ① 轮播 -->
+  <swiper
+    class="banner"
+    indicator-dots="{{true}}"
+    indicator-color="rgba(255,255,255,0.3)"
+    indicator-active-color="#FFD34D"
+    autoplay="{{true}}"
+    circular="{{true}}"
+    interval="4000"
+    duration="400">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <view class="banner-item" style="background:{{item.gradient}}">
+        <text class="banner-title">{{item.title}}</text>
+        <text class="banner-subtitle">{{item.subtitle}}</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- ② 分类九宫格 -->
+  <view class="cat-grid card">
+    <view
+      class="cat-item"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onCategoryTap">
+      <view class="cat-icon">{{item.icon}}</view>
+      <view class="cat-name">{{item.name}}</view>
+    </view>
+  </view>
+
+  <!-- ③ 热门陪玩 -->
+  <view class="section-head flex-between">
+    <view class="section-title">热门陪玩</view>
+    <view class="view-all" bindtap="onViewAll">查看全部 ›</view>
+  </view>
+  <view wx:if="{{loading && !hotServices.length}}" class="loading-tip">加载中…</view>
+  <view wx:elif="{{hotServices.length}}">
+    <service-card wx:for="{{hotServices}}" wx:key="id" service="{{item}}" />
+  </view>
+  <view wx:else class="loading-tip">暂无热门服务</view>
+
+  <!-- ④ 底部品牌文案 -->
+  <view class="brand-foot">
+    <view class="brand-name">{{brand}} · {{gameName}}</view>
+    <view class="brand-slogan">{{brandSlogan}}</view>
+  </view>
+</view>

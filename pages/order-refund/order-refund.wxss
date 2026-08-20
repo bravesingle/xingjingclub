@@ -1,0 +1,46 @@
+/* pages/order-refund/order-refund.wxss 私有样式 */
+
+/* 退款金额 */
+.refund-amount-card {
+  align-items: flex-end;
+}
+
+.amount-num {
+  font-size: 64rpx;
+  font-weight: 700;
+}
+
+/* 退款原因 */
+.reason-item {
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid var(--line);
+  border-radius: 12rpx;
+}
+
+.reason-item:last-child {
+  border-bottom: none;
+}
+
+.reason-on {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* radio */
+.radio {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 3rpx solid var(--line);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.radio-on {
+  border: 10rpx solid var(--gold);
+}
+
+/* footer 占位 */
+.footer-placeholder {
+  height: 160rpx;
+}

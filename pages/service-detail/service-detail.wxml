@@ -1,0 +1,81 @@
+<view wx:if="{{service}}" class="detail-page">
+  <!-- ① 大封面 -->
+  <view class="detail-cover" style="background:{{service.coverGradient}}">
+    <text class="detail-cover-text">{{service.coverText}}</text>
+    <view class="detail-mode">{{service.modeName}}</view>
+  </view>
+
+  <!-- ② 标题/副标题/标签/销量评分 -->
+  <view class="card detail-info">
+    <view class="detail-title">{{service.title}}</view>
+    <view class="detail-subtitle text-sub">{{service.subtitle}}</view>
+    <view class="detail-tags">
+      <text class="tag" wx:for="{{service.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="detail-meta flex-between">
+      <view class="text-sub">已售{{service.sales}}</view>
+      <view class="text-sub">评分 {{service.rating}}</view>
+    </view>
+  </view>
+
+  <!-- ③ 选择规格 -->
+  <view class="card">
+    <view class="detail-block-title">选择规格</view>
+    <view class="spec-row">
+      <view
+        class="spec-chip {{selectedIndex === index ? 'spec-active' : ''}}"
+        wx:for="{{service.specs}}"
+        wx:key="value"
+        data-index="{{index}}"
+        bindtap="onSpecTap">
+        <text>{{item.label}}</text>
+        <text class="spec-price">¥{{item.priceText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ④ 数量 -->
+  <view class="card flex-between">
+    <view class="detail-block-title detail-title-inline">数量</view>
+    <stepper value="{{quantity}}" min="1" max="99" bind:change="onQuantityChange" />
+  </view>
+
+  <!-- ⑤ 价格展示 -->
+  <view class="card flex-between">
+    <view class="detail-block-title detail-title-inline">合计</view>
+    <view class="price">
+      <text class="price-symbol">¥</text>
+      <text class="price-num">{{totalText}}</text>
+      <text class="price-unit">/起</text>
+    </view>
+  </view>
+
+  <!-- ⑥ 服务规则 / 下单须知 -->
+  <view class="card">
+    <view class="flex-between" bindtap="onToggleRules">
+      <view class="detail-block-title detail-title-inline">服务规则</view>
+      <view class="rule-arrow {{showRules ? 'rule-arrow-open' : ''}}"></view>
+    </view>
+    <view wx:if="{{showRules}}">
+      <view class="rule-item" wx:for="{{service.serviceRules}}" wx:key="*this">
+        <view class="rule-dot"></view>
+        <text class="flex-1">{{item}}</text>
+      </view>
+      <view class="divider"></view>
+      <view class="detail-block-title">下单须知</view>
+      <view class="rule-item" wx:for="{{service.notice}}" wx:key="*this">
+        <view class="rule-dot rule-dot-warn"></view>
+        <text class="flex-1">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位，避免被 footer-bar 遮挡 -->
+  <view class="footer-spacer"></view>
+</view>
+
+<!-- ⑦ 底部固定操作栏 -->
+<view class="footer-bar" wx:if="{{service}}">
+  <view class="btn btn-ghost" bindtap="onCopyWechat">客服</view>
+  <view class="btn btn-gold" bindtap="onOrder">立即下单</view>
+</view>

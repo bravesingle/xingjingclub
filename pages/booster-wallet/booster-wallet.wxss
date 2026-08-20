@@ -1,0 +1,60 @@
+/* pages/booster-wallet/booster-wallet.wxss 打手钱包私有样式 */
+
+/* 余额卡 */
+.balance-card {
+  background: linear-gradient(135deg, #1D2340, #171C33);
+  padding: 32rpx 28rpx;
+}
+
+.balance-label {
+  font-size: 24rpx;
+}
+
+.balance-main {
+  display: flex;
+  align-items: baseline;
+  margin: 12rpx 0 28rpx;
+}
+
+.balance-num {
+  font-size: 64rpx;
+}
+
+.balance-stats {
+  display: flex;
+  border-top: 2rpx solid var(--line);
+  padding-top: 22rpx;
+}
+
+.balance-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 22rpx;
+}
+
+.stat-value {
+  font-size: 28rpx;
+  color: var(--text-main);
+  margin-top: 6rpx;
+}
+
+/* 押金 */
+.deposit-tip {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+}
+
+/* 提现 */
+.withdraw-row {
+  margin-bottom: 8rpx;
+}
+
+.withdraw-tip {
+  margin: 8rpx 0 24rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+}

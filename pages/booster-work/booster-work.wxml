@@ -1,0 +1,70 @@
+<!-- pages/booster-work/booster-work.wxml 打手工作台 -->
+<view class="page">
+  <!-- 未登录引导 -->
+  <view class="empty-wrap" wx:if="{{needLogin}}">
+    <empty text="登录后使用工作台" subText="接单与提现都需要登录" btnText="去登录" bind:action="onGoLogin" />
+  </view>
+
+  <block wx:else>
+    <!-- 押金提示条 -->
+    <view class="deposit-tip flex-between" wx:if="{{!deposited}}">
+      <text class="deposit-tip-text">尚未缴纳押金，无法接单</text>
+      <view class="btn btn-gold btn-sm" bindtap="onGoDeposit">去缴纳</view>
+    </view>
+
+    <!-- 顶部 tab 切换 -->
+    <view class="tab-bar">
+      <view class="tab-item {{tab === 'pool' ? 'tab-on' : ''}}" data-tab="pool" bindtap="onTabTap">待接单</view>
+      <view class="tab-item {{tab === 'mine' ? 'tab-on' : ''}}" data-tab="mine" bindtap="onTabTap">我的订单</view>
+    </view>
+
+    <!-- 待接单池 -->
+    <block wx:if="{{tab === 'pool'}}">
+      <view class="list" wx:if="{{pool.length > 0}}">
+        <view class="card pool-card" wx:for="{{pool}}" wx:key="id">
+          <view class="pool-main flex">
+            <view class="pool-cover" style="background:{{item.coverGradient}}">{{item.coverText}}</view>
+            <view class="flex-1 pool-info">
+              <view class="pool-title text-ellipsis">{{item.serviceTitle}}</view>
+              <view class="text-sub">{{item.specLabel}} × {{item.quantity}}</view>
+              <view class="price">
+                <text class="price-symbol">¥</text>
+                <text class="price-num">{{item.amountText}}</text>
+              </view>
+            </view>
+            <view class="btn btn-primary btn-sm pool-accept" data-id="{{item.id}}" catchtap="onAccept">接单</view>
+          </view>
+          <view class="pool-meta text-dim">单号 {{item.orderNo}} · {{item.createdAtText}}</view>
+          <view class="pool-remark text-sub" wx:if="{{item.remark}}">备注：{{item.remark}}</view>
+        </view>
+      </view>
+      <view class="empty-wrap" wx:elif="{{!loading}}">
+        <empty text="暂无待接订单" subText="新订单会实时出现在这里" />
+      </view>
+      <view class="loading-tip text-center text-dim" wx:else>加载中…</view>
+    </block>
+
+    <!-- 我的订单 -->
+    <block wx:elif="{{tab === 'mine'}}">
+      <view class="list" wx:if="{{mine.length > 0}}">
+        <view class="card mine-card" wx:for="{{mine}}" wx:key="id" data-id="{{item.id}}" bindtap="onGoDetail">
+          <view class="flex-between">
+            <view class="mine-title text-ellipsis flex-1">{{item.serviceTitle}}</view>
+            <text class="status-tag {{item.statusCls}}">{{item.statusText}}</text>
+          </view>
+          <view class="flex-between mine-bottom">
+            <view class="price">
+              <text class="price-symbol">¥</text>
+              <text class="price-num">{{item.amountText}}</text>
+            </view>
+            <text class="text-dim">接单时间：{{item.acceptTimeText}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-wrap" wx:elif="{{!loading}}">
+        <empty text="暂无接单记录" subText="接下订单后会显示在这里" />
+      </view>
+      <view class="loading-tip text-center text-dim" wx:else>加载中…</view>
+    </block>
+  </block>
+</view>

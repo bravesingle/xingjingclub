@@ -1,0 +1,34 @@
+<view class="page sl-page">
+  <!-- ① 分类横向 tab 栏 -->
+  <scroll-view class="cat-tabs" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view
+      class="cat-tab {{activeCategory === item.id ? 'cat-tab-active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onCategoryTap">{{item.name}}</view>
+  </scroll-view>
+
+  <!-- ② 排序栏 -->
+  <view class="sort-bar card">
+    <view
+      class="sort-item {{sort === 'sales' ? 'sort-active' : ''}}"
+      data-sort="sales"
+      bindtap="onSortTap">综合</view>
+    <view
+      class="sort-item {{sort === 'price_asc' ? 'sort-active' : ''}}"
+      data-sort="price_asc"
+      bindtap="onSortTap">价格↑</view>
+    <view
+      class="sort-item {{sort === 'price_desc' ? 'sort-active' : ''}}"
+      data-sort="price_desc"
+      bindtap="onSortTap">价格↓</view>
+  </view>
+
+  <!-- ③ 列表 / 空状态 -->
+  <view wx:if="{{loading && !list.length}}" class="sl-tip">加载中…</view>
+  <view wx:elif="{{list.length}}" class="sl-list">
+    <service-card wx:for="{{list}}" wx:key="id" service="{{item}}" />
+  </view>
+  <empty wx:else text="暂无相关服务" subText="换个分类或排序方式试试" />
+</view>

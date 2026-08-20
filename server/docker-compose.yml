@@ -1,0 +1,29 @@
+# 本地开发环境：MySQL 8 + Redis 7
+# 用法：docker compose up -d
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: xingjing-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: xingjing123
+      MYSQL_DATABASE: xingjing
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - xingjing_mysql:/var/lib/mysql
+
+  redis:
+    image: redis:7
+    container_name: xingjing-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - xingjing_redis:/data
+
+volumes:
+  xingjing_mysql:
+  xingjing_redis:

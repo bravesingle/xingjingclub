@@ -1,0 +1,19 @@
+.empty {
+  padding: 120rpx 40rpx;
+}
+.empty-icon {
+  font-size: 96rpx;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  color: var(--text-sub);
+  font-size: 28rpx;
+}
+.empty-sub {
+  color: var(--text-dim);
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+.empty-btn {
+  margin-top: 32rpx;
+}

@@ -1,0 +1,32 @@
+<!-- pages/balance/balance.wxml -->
+<view class="page">
+  <!-- 余额卡 -->
+  <view class="card balance-card">
+    <view class="text-sub">我的余额</view>
+    <view class="price balance-amount">
+      <text class="price-symbol">¥</text>
+      <text class="price-num">{{balanceYuan}}</text>
+    </view>
+    <view class="text-dim">余额可用于支付订单</view>
+  </view>
+
+  <!-- 充值 -->
+  <view class="card">
+    <view class="section-title">充值</view>
+    <view class="flex">
+      <input class="form-input flex-1" type="digit" value="{{rechargeAmount}}" placeholder="输入充值金额（元）" bindinput="onRechargeInput" />
+      <view class="btn btn-gold btn-sm recharge-btn" bindtap="onRecharge">充值</view>
+    </view>
+    <view class="text-dim tip">开发阶段为模拟充值，直接到账</view>
+  </view>
+
+  <!-- 激活码兑换 -->
+  <view class="card">
+    <view class="section-title">激活码兑换</view>
+    <view class="flex">
+      <input class="form-input flex-1" value="{{redeemCode}}" placeholder="输入激活码" bindinput="onRedeemInput" />
+      <view class="btn btn-primary btn-sm recharge-btn" bindtap="onRedeem">兑换</view>
+    </view>
+    <view class="text-dim tip">激活码由平台发放，兑换后金额入余额</view>
+  </view>
+</view>

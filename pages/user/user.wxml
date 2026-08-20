@@ -1,0 +1,110 @@
+<!-- pages/user/user.wxml 个人中心 -->
+<view class="page user-page">
+  <!-- ① 顶部资料卡 -->
+  <view class="card profile-card" bindtap="onCardTap">
+    <view class="flex">
+      <view class="avatar-wrap">
+        <image wx:if="{{userInfo && userInfo.avatar}}" class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+        <view wx:else class="avatar avatar-placeholder">{{avatarText}}</view>
+      </view>
+      <view class="flex-1 profile-info">
+        <view class="profile-name">
+          <text wx:if="{{userInfo}}">{{userInfo.nickname}}</text>
+          <text wx:else class="text-gold">点击登录</text>
+          <text wx:if="{{userInfo && userInfo.vip}}" class="tag tag-gold vip-tag">VIP</text>
+        </view>
+        <view class="profile-sub">
+          <text wx:if="{{userInfo && userInfo.gameId}}">游戏ID：{{userInfo.gameId}}</text>
+          <text wx:elif="{{userInfo}}" class="text-gold">去完善游戏ID ›</text>
+          <text wx:else>登录后开启陪玩之旅</text>
+        </view>
+      </view>
+      <view class="cell-arrow"></view>
+    </view>
+  </view>
+
+  <!-- ② 订单统计卡 -->
+  <view class="card stats-card">
+    <view class="stats-row">
+      <view class="stats-col" bindtap="onCountTap" data-status="pending_pay">
+        <view class="stats-num">{{counts.pending_pay}}</view>
+        <view class="text-dim">待支付</view>
+      </view>
+      <view class="stats-divider"></view>
+      <view class="stats-col" bindtap="onCountTap" data-status="in_progress">
+        <view class="stats-num">{{counts.in_progress}}</view>
+        <view class="text-dim">服务中</view>
+      </view>
+      <view class="stats-divider"></view>
+      <view class="stats-col" bindtap="onCountTap" data-status="completed">
+        <view class="stats-num">{{counts.completed}}</view>
+        <view class="text-dim">已完成</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ③ 打手专区（登录后按角色显示：打手=工作台/钱包，玩家/未登录=成为打手） -->
+  <view class="card menu-card">
+    <view class="cell" wx:if="{{isBooster}}" bindtap="onBoosterWork">
+      <text class="text-gold">打手工作台</text>
+      <view class="menu-right">
+        <text class="text-dim">接单 · 服务</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+    <view class="cell" wx:if="{{isBooster}}" bindtap="onBoosterWallet">
+      <text class="text-gold">钱包</text>
+      <view class="menu-right">
+        <text class="text-dim">余额 · 提现</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+    <view class="cell" wx:if="{{!isBooster}}" bindtap="onBoosterApply">
+      <text>成为打手</text>
+      <view class="menu-right">
+        <text class="text-dim">入驻赚钱</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ④ 功能菜单卡 -->
+  <view class="card menu-card">
+    <view class="cell" bindtap="onBalance">
+      <text>我的余额</text>
+      <view class="menu-right">
+        <text class="text-gold">¥{{balanceYuan}}</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+    <view class="cell" bindtap="onAllOrders">
+      <text>我的订单</text>
+      <view class="menu-right">
+        <text class="text-dim">全部</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+    <view class="cell" bindtap="onContact">
+      <text>联系客服</text>
+      <view class="menu-right">
+        <text class="text-dim">{{serviceWechat}}</text>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+    <view class="cell" bindtap="onAbout">
+      <text>关于星竞</text>
+      <view class="cell-arrow"></view>
+    </view>
+    <view class="cell" bindtap="onClearCache">
+      <text>清除缓存</text>
+      <view class="cell-arrow"></view>
+    </view>
+    <view class="cell" wx:if="{{userInfo}}" bindtap="onLogout">
+      <text class="text-danger">退出登录</text>
+      <view class="cell-arrow"></view>
+    </view>
+  </view>
+
+  <!-- ⑤ 底部版本 -->
+  <view class="footer-version text-dim">{{brand}} v{{version}}</view>
+</view>

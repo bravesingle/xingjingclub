@@ -1,0 +1,25 @@
+<!-- pages/chat/chat.wxml -->
+<view class="chat-page">
+  <view class="msg-list" id="msg-list">
+    <view wx:for="{{messages}}" wx:key="id" class="msg-row {{item.mine ? 'mine' : ''}}">
+      <view class="msg-bubble">
+        <view class="msg-role" wx:if="{{!item.mine}}">{{item.senderRole === 'booster' ? '打手' : '玩家'}}</view>
+        <view class="msg-content">{{item.content}}</view>
+        <view class="msg-time">{{item.time}}</view>
+      </view>
+    </view>
+    <view wx:if="{{!messages.length}}" class="chat-empty">暂无消息，打个招呼吧</view>
+  </view>
+
+  <view class="chat-input-bar">
+    <input
+      class="chat-input"
+      value="{{inputText}}"
+      placeholder="输入消息…"
+      confirm-type="send"
+      bindinput="onInput"
+      bindconfirm="onSend"
+    />
+    <view class="chat-send" bindtap="onSend">发送</view>
+  </view>
+</view>

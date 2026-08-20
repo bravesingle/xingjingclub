@@ -1,0 +1,49 @@
+<!-- pages/order-refund/order-refund.wxml 申请退款 -->
+<view class="page safe-bottom" wx:if="{{order}}">
+  <!-- ① 退款金额 -->
+  <view class="card refund-amount-card flex-between">
+    <view class="column">
+      <text class="text-sub">退款金额</text>
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="amount-num">{{amountText}}</text>
+      </view>
+    </view>
+    <text class="text-dim">将原路退回至支付账户</text>
+  </view>
+
+  <!-- ② 退款原因单选 -->
+  <view class="card">
+    <view class="section-title">退款原因</view>
+    <view
+      class="reason-item flex-between {{selectedReason === item ? 'reason-on' : ''}}"
+      wx:for="{{reasons}}"
+      wx:key="*this"
+      data-reason="{{item}}"
+      bindtap="onReasonTap"
+    >
+      <text>{{item}}</text>
+      <view class="radio {{selectedReason === item ? 'radio-on' : ''}}"></view>
+    </view>
+  </view>
+
+  <!-- ③ 补充说明 -->
+  <view class="card">
+    <view class="section-title">补充说明</view>
+    <textarea
+      class="form-textarea"
+      placeholder="选填：请描述具体情况，便于客服快速处理"
+      maxlength="200"
+      value="{{detail}}"
+      bindinput="onDetailInput"
+    />
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="footer-placeholder"></view>
+
+  <!-- ④ footer-bar -->
+  <view class="footer-bar">
+    <view class="btn btn-gold {{submitting ? 'btn-disabled' : ''}}" bindtap="onSubmit">{{submitting ? '提交中…' : '提交申请'}}</view>
+  </view>
+</view>

@@ -1,0 +1,76 @@
+/* pages/order-pay/order-pay.wxss 私有样式 */
+
+/* 金额大展示 */
+.amount-panel {
+  padding: 60rpx 0 40rpx;
+}
+
+.amount-num {
+  font-size: 88rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+/* 倒计时卡片 */
+.timer-card {
+  padding: 28rpx 24rpx;
+}
+
+.timer-card .column {
+  gap: 6rpx;
+}
+
+/* 支付方式 */
+.pay-item {
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid var(--line);
+}
+
+.pay-item:last-child {
+  border-bottom: none;
+}
+
+.pay-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-right: 20rpx;
+}
+
+.pay-icon-wechat {
+  background: linear-gradient(135deg, #07C160, #09B25A);
+}
+
+.pay-icon-mock {
+  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
+}
+
+.pay-icon-balance {
+  background: linear-gradient(135deg, #FFD34D, #FFA940);
+  color: #3A2E00;
+}
+
+/* radio */
+.radio {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 3rpx solid var(--line);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.radio-on {
+  border: 10rpx solid var(--gold);
+}
+
+/* footer 占位 */
+.footer-placeholder {
+  height: 160rpx;
+}

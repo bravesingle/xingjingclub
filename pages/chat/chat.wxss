@@ -1,0 +1,77 @@
+/* pages/chat/chat.wxss */
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.msg-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.msg-row {
+  display: flex;
+  margin-bottom: 24rpx;
+}
+.msg-row.mine {
+  justify-content: flex-end;
+}
+.msg-bubble {
+  max-width: 70%;
+  background: var(--bg-card);
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+}
+.msg-row.mine .msg-bubble {
+  background: var(--primary);
+}
+.msg-role {
+  font-size: 20rpx;
+  color: var(--text-dim);
+  margin-bottom: 4rpx;
+}
+.msg-content {
+  font-size: 28rpx;
+  color: var(--text-main);
+  word-break: break-all;
+}
+.msg-row.mine .msg-content {
+  color: #fff;
+}
+.msg-time {
+  font-size: 20rpx;
+  color: var(--text-dim);
+  margin-top: 6rpx;
+  text-align: right;
+}
+.chat-empty {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 120rpx 0;
+}
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: var(--bg-card);
+  border-top: 2rpx solid var(--line);
+}
+.chat-input {
+  flex: 1;
+  background: var(--bg-card-2);
+  border-radius: 40rpx;
+  padding: 16rpx 28rpx;
+  color: var(--text-main);
+  font-size: 28rpx;
+}
+.chat-send {
+  margin-left: 20rpx;
+  padding: 16rpx 32rpx;
+  background: linear-gradient(135deg, #ffd34d, #ffa940);
+  color: #3a2e00;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}

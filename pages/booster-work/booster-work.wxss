@@ -1,0 +1,113 @@
+/* pages/booster-work/booster-work.wxss 工作台私有样式 */
+
+/* 押金提示条 */
+.deposit-tip {
+  background: rgba(255, 159, 67, 0.12);
+  border: 2rpx solid rgba(255, 159, 67, 0.35);
+  border-radius: 16rpx;
+  padding: 14rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.deposit-tip-text {
+  flex: 1;
+  color: var(--warning);
+  font-size: 26rpx;
+}
+.deposit-tip .btn {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+/* 顶部 tab 栏 */
+.tab-bar {
+  display: flex;
+  background: var(--bg-card);
+  border-radius: 16rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+}
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: var(--text-sub);
+  border-radius: 12rpx;
+}
+.tab-on {
+  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* 列表间距 */
+.list {
+  padding-bottom: 20rpx;
+}
+
+/* 空状态 / 加载中 */
+.empty-wrap {
+  padding: 120rpx 0;
+}
+.loading-tip {
+  padding: 120rpx 0;
+}
+
+/* 待接单卡片 */
+.pool-main {
+  align-items: flex-start;
+}
+.pool-cover {
+  width: 120rpx;
+  height: 90rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 24rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.pool-info {
+  margin-left: 20rpx;
+}
+.pool-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.pool-info .text-sub {
+  margin-top: 8rpx;
+}
+.pool-info .price {
+  margin-top: 10rpx;
+  display: inline-flex;
+  align-items: baseline;
+}
+.pool-accept {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  align-self: center;
+}
+.pool-meta {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+}
+.pool-remark {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+}
+
+/* 我的订单卡片 */
+.mine-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+}
+.mine-bottom {
+  margin-top: 20rpx;
+}
+.mine-bottom .price {
+  display: inline-flex;
+  align-items: baseline;
+}

@@ -1,0 +1,17 @@
+/* pages/balance/balance.wxss */
+.balance-card {
+  padding: 40rpx 32rpx;
+}
+.balance-amount {
+  margin: 16rpx 0 8rpx;
+}
+.balance-amount .price-num {
+  font-size: 64rpx;
+}
+.recharge-btn {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+.tip {
+  margin-top: 12rpx;
+}

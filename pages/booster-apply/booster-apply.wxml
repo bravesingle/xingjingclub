@@ -1,0 +1,50 @@
+<!-- pages/booster-apply/booster-apply.wxml 打手入驻申请 -->
+<view class="page safe-bottom">
+  <!-- ① 说明 -->
+  <view class="card apply-tip">
+    <view class="text-sub text-bold">入驻说明</view>
+    <view class="text-dim apply-tip-text">填写申请信息提交后，平台将在 1-2 个工作日内完成审核；审核通过并缴纳押金后即可接单。</view>
+  </view>
+
+  <!-- ② 申请表单 -->
+  <view class="card">
+    <view class="form-cell">
+      <view class="form-label">姓名</view>
+      <input class="form-input" placeholder="请输入真实姓名" placeholder-class="apply-placeholder" value="{{name}}" bindinput="onNameInput" maxlength="20" />
+    </view>
+    <view class="form-cell">
+      <view class="form-label">手机号</view>
+      <input class="form-input" type="number" placeholder="请输入11位手机号" placeholder-class="apply-placeholder" value="{{phone}}" bindinput="onPhoneInput" maxlength="11" />
+    </view>
+    <view class="form-cell apply-cell">
+      <view class="form-label">擅长分类</view>
+      <view class="category-list">
+        <view wx:for="{{categories}}" wx:key="value" class="category-item {{item.checked ? 'category-item-on' : ''}}" data-value="{{item.value}}" bindtap="onToggleCategory">{{item.label}}</view>
+      </view>
+    </view>
+    <view class="form-cell">
+      <view class="form-label">段位</view>
+      <input class="form-input" placeholder="选填，如：少尉" placeholder-class="apply-placeholder" value="{{rank}}" bindinput="onRankInput" maxlength="20" />
+    </view>
+    <view class="form-cell apply-cell">
+      <view class="form-label">收款方式</view>
+      <view class="channel-list">
+        <view class="category-item {{withdrawChannel === 'wechat' ? 'category-item-on' : ''}}" data-channel="wechat" bindtap="onWithdrawChannel">微信</view>
+        <view class="category-item {{withdrawChannel === 'bank' ? 'category-item-on' : ''}}" data-channel="bank" bindtap="onWithdrawChannel">银行卡</view>
+      </view>
+    </view>
+    <view class="form-cell">
+      <view class="form-label">收款账号</view>
+      <input class="form-input" placeholder="微信号或银行卡号" placeholder-class="apply-placeholder" value="{{withdrawAccount}}" bindinput="onWithdrawAccountInput" maxlength="50" />
+    </view>
+    <view class="form-cell apply-cell">
+      <view class="form-label">备注</view>
+      <textarea class="form-textarea" placeholder="选填，如：擅长武器、可语音开黑等" placeholder-class="apply-placeholder" value="{{remark}}" bindinput="onRemarkInput" maxlength="200"></textarea>
+    </view>
+  </view>
+
+  <!-- ③ 提交 -->
+  <view class="footer-bar">
+    <view class="btn btn-gold {{submitting ? 'btn-disabled' : ''}}" bindtap="onSubmit">{{submitting ? '提交中...' : '提交申请'}}</view>
+  </view>
+</view>

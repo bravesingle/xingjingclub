@@ -1,0 +1,39 @@
+<!-- pages/order-list/order-list.wxml 订单列表 -->
+<view class="page">
+  <!-- 顶部状态 tab -->
+  <view class="tab-bar">
+    <view
+      class="tab-item {{activeTab === item.key ? 'tab-on' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTabTap"
+    >{{item.name}}</view>
+  </view>
+
+  <!-- 未登录引导 -->
+  <view class="empty-wrap" wx:if="{{needLogin}}">
+    <empty text="登录后查看你的订单" subText="订单与支付都需要登录" btnText="去登录" bind:action="onGoLogin" />
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="list" wx:elif="{{list.length > 0}}">
+    <order-card
+      wx:for="{{list}}"
+      wx:key="id"
+      order="{{item}}"
+      bind:pay="onCardPay"
+      bind:cancel="onCardCancel"
+      bind:contact="onCardContact"
+      bind:again="onCardAgain"
+    />
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-wrap" wx:elif="{{!loading}}">
+    <empty text="暂无相关订单" />
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-tip text-center text-dim" wx:else>加载中…</view>
+</view>

@@ -1,0 +1,25 @@
+.stepper {
+  display: inline-flex;
+}
+.stepper-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 12rpx;
+  background: var(--bg-card-2);
+  color: var(--text-main);
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stepper-disabled {
+  opacity: 0.35;
+}
+.stepper-num {
+  min-width: 72rpx;
+  text-align: center;
+  color: var(--text-main);
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 56rpx;
+}

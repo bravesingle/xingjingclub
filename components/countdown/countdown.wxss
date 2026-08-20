@@ -1,0 +1,6 @@
+.countdown {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--danger);
+  font-variant-numeric: tabular-nums;
+}

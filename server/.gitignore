@@ -1,0 +1,6 @@
+# 环境与密钥
+node_modules/
+dist/
+*.log
+.env
+!.env.example

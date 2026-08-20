@@ -1,0 +1,95 @@
+/* pages/user/user.wxss 个人中心私有样式 */
+
+/* 顶部资料卡 */
+.profile-card {
+  background: linear-gradient(135deg, #1D2340, #171C33);
+  padding: 36rpx 28rpx;
+}
+
+.avatar-wrap {
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
+  color: #FFFFFF;
+  font-size: 44rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-info {
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.vip-tag {
+  margin: 0 0 0 16rpx;
+}
+
+.profile-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--text-sub);
+}
+
+/* 订单统计 */
+.stats-row {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 0;
+}
+
+.stats-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.3;
+}
+
+.stats-divider {
+  width: 2rpx;
+  height: 52rpx;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+/* 功能菜单 */
+.menu-card {
+  padding: 0 24rpx;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-right .cell-arrow {
+  margin-left: 12rpx;
+}
+
+/* 底部版本 */
+.footer-version {
+  text-align: center;
+  margin-top: 56rpx;
+}

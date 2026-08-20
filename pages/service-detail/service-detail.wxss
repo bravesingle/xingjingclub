@@ -1,0 +1,143 @@
+/* pages/service-detail/service-detail.wxss —— 仅详情页私有样式，其余复用 app.wxss */
+
+.detail-page {
+  padding-bottom: 160rpx;
+}
+
+.detail-cover {
+  height: 320rpx;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-cover-text {
+  color: #FFFFFF;
+  font-size: 52rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.detail-mode {
+  margin-top: 16rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26rpx;
+  padding: 6rpx 24rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.6);
+  border-radius: 24rpx;
+}
+
+.detail-info {
+  margin-top: 20rpx;
+}
+
+.detail-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.detail-subtitle {
+  margin-top: 8rpx;
+}
+
+.detail-tags {
+  margin-top: 16rpx;
+}
+
+.detail-meta {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid var(--line);
+}
+
+.detail-block-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.detail-title-inline {
+  margin-bottom: 0;
+}
+
+.spec-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8rpx;
+}
+
+.spec-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(25% - 16rpx);
+  margin: 8rpx;
+  padding: 16rpx 0;
+  border-radius: 16rpx;
+  background: var(--bg-card-2);
+  border: 2rpx solid transparent;
+  box-sizing: border-box;
+  color: var(--text-sub);
+  font-size: 26rpx;
+}
+
+.spec-price {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.spec-active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(255, 211, 77, 0.08);
+}
+
+.spec-active .spec-price {
+  color: var(--gold);
+}
+
+.rule-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 4rpx solid var(--text-dim);
+  border-bottom: 4rpx solid var(--text-dim);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.rule-arrow-open {
+  transform: rotate(-135deg);
+}
+
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  color: var(--text-sub);
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.rule-item:last-child {
+  margin-bottom: 0;
+}
+
+.rule-dot {
+  flex-shrink: 0;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: var(--primary);
+  margin: 16rpx 16rpx 0 0;
+}
+
+.rule-dot-warn {
+  background: var(--gold);
+}
+
+.footer-spacer {
+  height: 160rpx;
+}
