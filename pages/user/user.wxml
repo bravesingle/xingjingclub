@@ -16,7 +16,7 @@
         <view class="profile-sub">
           <text wx:if="{{userInfo && userInfo.gameId}}">游戏ID：{{userInfo.gameId}}</text>
           <text wx:elif="{{userInfo}}" class="text-gold">去完善游戏ID ›</text>
-          <text wx:else>登录后开启陪玩之旅</text>
+          <text wx:else>登录后开启服务</text>
         </view>
       </view>
       <view class="cell-arrow"></view>
@@ -43,26 +43,12 @@
     </view>
   </view>
 
-  <!-- ③ 打手专区（登录后按角色显示：打手=工作台/钱包，玩家/未登录=成为打手） -->
-  <view class="card menu-card">
-    <view class="cell" wx:if="{{isBooster}}" bindtap="onBoosterWork">
-      <text class="text-gold">打手工作台</text>
+  <!-- ③ 工作台（仅服务方角色可见；收入结算由平台线下处理，小程序内不含钱包） -->
+  <view class="card menu-card" wx:if="{{isBooster}}">
+    <view class="cell" bindtap="onBoosterWork">
+      <text class="text-gold">工作台</text>
       <view class="menu-right">
         <text class="text-dim">接单 · 服务</text>
-        <view class="cell-arrow"></view>
-      </view>
-    </view>
-    <view class="cell" wx:if="{{isBooster}}" bindtap="onBoosterWallet">
-      <text class="text-gold">钱包</text>
-      <view class="menu-right">
-        <text class="text-dim">余额 · 提现</text>
-        <view class="cell-arrow"></view>
-      </view>
-    </view>
-    <view class="cell" wx:if="{{!isBooster}}" bindtap="onBoosterApply">
-      <text>成为打手</text>
-      <view class="menu-right">
-        <text class="text-dim">入驻赚钱</text>
         <view class="cell-arrow"></view>
       </view>
     </view>
@@ -70,13 +56,6 @@
 
   <!-- ④ 功能菜单卡 -->
   <view class="card menu-card">
-    <view class="cell" bindtap="onBalance">
-      <text>我的余额</text>
-      <view class="menu-right">
-        <text class="text-gold">¥{{balanceYuan}}</text>
-        <view class="cell-arrow"></view>
-      </view>
-    </view>
     <view class="cell" bindtap="onAllOrders">
       <text>我的订单</text>
       <view class="menu-right">
@@ -87,7 +66,7 @@
     <view class="cell" bindtap="onContact">
       <text>联系客服</text>
       <view class="menu-right">
-        <text class="text-dim">{{serviceWechat}}</text>
+        <text class="text-dim">{{servicePhone}}</text>
         <view class="cell-arrow"></view>
       </view>
     </view>

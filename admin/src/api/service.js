@@ -28,8 +28,8 @@ export function batchRemoveServices(ids) {
 
 /** 服务分类常量（供表单下拉使用） */
 export const CATEGORY_OPTIONS = [
-  { value: 'rank', label: '排位上分' },
-  { value: 'loot', label: '摸金带飞' },
+  { value: 'rank', label: '排位' },
+  { value: 'loot', label: '摸金' },
   { value: 'task', label: '任务通关' },
   { value: 'warfare', label: '全面战场' }
 ]

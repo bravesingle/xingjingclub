@@ -1,5 +1,5 @@
 // pages/chat/chat.js
-// 订单聊天页（玩家 / 打手共用）
+// 订单聊天页（玩家 / 服务方共用）
 const chatApi = require('../../api/chat')
 const auth = require('../../utils/auth')
 
@@ -62,9 +62,12 @@ Page({
   },
 
   formatTime(ts) {
-    if (!ts) return ''
-    const d = new Date(ts)
-    const pad = function (n) { return n < 10 ? '0' + n : '' + n }
+    if (ts === null || ts === undefined || ts === '') return ''
+    const n = Number(ts)
+    if (isNaN(n) || n <= 0) return ''
+    const d = new Date(n)
+    if (isNaN(d.getTime())) return ''
+    const pad = function (x) { return x < 10 ? '0' + x : '' + x }
     return pad(d.getHours()) + ':' + pad(d.getMinutes())
   },
 

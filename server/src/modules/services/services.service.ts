@@ -13,6 +13,7 @@ import {
   SPEC_DISCOUNT
 } from './services.constants'
 import { CreateServiceDto, QueryServicesDto, UpdateServiceDto } from './dto/service.dto'
+import { BannersService } from '../banners/banners.service'
 
 const HOME_CACHE_KEY = 'cache:home:data'
 const HOME_CACHE_TTL = 60
@@ -24,7 +25,8 @@ export class ServicesService {
     private readonly serviceRepo: Repository<GameService>,
     @InjectRepository(ServiceSpec)
     private readonly specRepo: Repository<ServiceSpec>,
-    private readonly redis: RedisService
+    private readonly redis: RedisService,
+    private readonly bannersService: BannersService
   ) {}
 
   /* ============ 规格生成（与前端折扣逻辑一致） ============ */
@@ -81,7 +83,10 @@ export class ServicesService {
     }
 
     const data = {
-      banners: BANNERS,
+      // Banner：优先数据库配置（管理后台可增删），空表回退默认常量
+      banners: (await this.bannersService.listForUser()).length
+        ? await this.bannersService.listForUser()
+        : BANNERS,
       categories: CATEGORIES,
       hotServices: hot.map(toServiceVO)
     }
@@ -171,8 +176,8 @@ export class ServicesService {
       cover: dto.cover || '',
       tags: dto.tags || [],
       serviceRules: [
-        '下单后请添加客服微信确认游戏区服与上线时间；',
-        '陪玩过程中请保持语音沟通，便于带队指挥；'
+        '下单后请保持手机畅通，客服将与您确认服务时间；',
+        '服务过程中请保持语音沟通，便于配合协作；'
       ],
       notice: ['订单支付后不支持改单，请确认服务规格后下单；', '服务未开始前可申请全额退款；'],
       isOnSale: true,

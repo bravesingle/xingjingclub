@@ -8,6 +8,8 @@ import { User } from '../users/user.entity'
 import { toUserVO } from '../users/user.vo'
 import { Booster } from '../boosters/booster.entity'
 import { WechatLoginDto } from './dto/wechat-login.dto'
+import { WechatPhoneLoginDto } from './dto/wechat-phone-login.dto'
+import { WechatPhoneService } from './wechat-phone.service'
 import { ApplyBoosterDto } from './dto/apply-booster.dto'
 import { CATEGORY_NAME_MAP } from '../services/services.constants'
 
@@ -16,9 +18,26 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly wechatPhone: WechatPhoneService,
     @InjectRepository(Booster)
     private readonly boosterRepo: Repository<Booster>
   ) {}
+
+  /**
+   * 微信一键登录（推荐）：手机号快速验证 code 换真实手机号 + wx.login code 换 openid
+   * 用户无需手填手机号，复用 wechatLogin 的建号与角色绑定逻辑
+   */
+  async wechatLoginWithPhone(
+    dto: WechatPhoneLoginDto
+  ): Promise<{ token: string; userInfo: ReturnType<typeof toUserVO> }> {
+    const phone = await this.wechatPhone.getPhoneNumber(dto.phoneCode)
+    return this.wechatLogin({
+      code: dto.code,
+      nickname: dto.nickname,
+      gameId: dto.gameId,
+      phone
+    } as WechatLoginDto)
+  }
 
   /**
    * 微信登录（wx.login code 换 openid）
@@ -26,7 +45,11 @@ export class AuthService {
    * - 手机号绑定身份：phone 命中已审核打手 → role=booster，否则 player
    */
   async wechatLogin(dto: WechatLoginDto): Promise<{ token: string; userInfo: ReturnType<typeof toUserVO> }> {
-    if (dto.phone) {
+    // mock 模式（WECHAT_MOCK=true）：允许手机号锚定已有用户（开发期无真实 openid）
+    // 真实模式（WECHAT_MOCK=false）：强制用 wx.login code 换真实 openid，手机号仅用于打手角色识别，
+    // 不锚定旧用户，避免命中 mock/seed 假用户导致永远拿不到真实 openid（微信支付依赖真实 openid）
+    const mockMode = process.env.WECHAT_MOCK === 'true'
+    if (mockMode && dto.phone) {
       // 1) 打手手机号：命中已审核打手 → 一定是打手身份
       const booster = await this.boosterRepo.findOne({ where: { phone: dto.phone, audit: 'approved' } })
       if (booster && booster.userId) {
@@ -46,7 +69,7 @@ export class AuthService {
           return { token, userInfo: toUserVO(await this.usersService.findByIdOrFail(bound.id)) }
         }
       }
-      // 2) 普通用户锚点：仅当该手机号不是打手时，才按普通用户匹配
+      // 2) 普通用户锚点（仅 mock 模式）：命中非打手已有用户 → 直接登录
       if (!booster) {
         const userByPhone = await this.usersService.findByPhone(dto.phone)
         if (userByPhone && userByPhone.role !== 'booster') {

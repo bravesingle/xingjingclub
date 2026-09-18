@@ -30,11 +30,13 @@ export const ACTION_LABEL: Record<string, string> = {
   reject_refund: '驳回退款'
 }
 
-/** 生成订单号：XJ + 时间戳 + 4 位随机 */
+/** 生成订单号：XJ + 时间戳 + 4 位加密安全随机 */
+import { randomInt } from 'crypto'
+
 export function genOrderNo(): string {
   const d = new Date()
   const p = (n: number) => (n < 10 ? '0' + n : '' + n)
   const stamp =
     d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds())
-  return 'XJ' + stamp + Math.floor(Math.random() * 9000 + 1000)
+  return 'XJ' + stamp + randomInt(1000, 10000)
 }

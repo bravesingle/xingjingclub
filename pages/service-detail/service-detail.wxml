@@ -1,7 +1,11 @@
 <view wx:if="{{service}}" class="detail-page">
   <!-- ① 大封面 -->
-  <view class="detail-cover" style="background:{{service.coverGradient}}">
-    <text class="detail-cover-text">{{service.coverText}}</text>
+  <view class="detail-cover">
+    <image wx:if="{{service.coverUrl}}" class="detail-cover-img" src="{{service.coverUrl}}" mode="aspectFill" />
+    <block wx:else>
+      <view class="detail-cover-bg" style="background:{{service.coverGradient}}"></view>
+      <text class="detail-cover-text">{{service.coverText}}</text>
+    </block>
     <view class="detail-mode">{{service.modeName}}</view>
   </view>
 

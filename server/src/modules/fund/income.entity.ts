@@ -3,7 +3,7 @@ import { BaseEntity } from '../../common/entities/base.entity'
 
 /**
  * 打手收入流水（每笔完成订单的收入）
- * status: frozen 冻结中（T+3）/ available 可提现 / withdrawn 已提现
+ * status: frozen 冻结中（T+N）/ available 可提现 / reversed 已回滚（订单退款作废）
  */
 @Entity('incomes')
 export class Income extends BaseEntity {

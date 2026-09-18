@@ -102,3 +102,25 @@
   font-size: 22rpx;
   line-height: 1.7;
 }
+
+/* ============ 微信一键登录按钮（button 组件需重置默认样式） ============ */
+.login-btn {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-size: 30rpx;
+  line-height: normal;
+  overflow: visible;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+/* disabled 时保持金色底（原生 button 默认会把禁用态变灰） */
+.login-btn[disabled] {
+  color: #3A2E00;
+  background: linear-gradient(135deg, #FFD34D, #FFA940);
+  opacity: 0.5;
+}

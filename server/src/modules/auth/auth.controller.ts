@@ -4,6 +4,7 @@ import { Public } from '../../common/decorators/public.decorator'
 import { CurrentUser } from '../../common/decorators/current-user.decorator'
 import { AuthService } from './auth.service'
 import { WechatLoginDto } from './dto/wechat-login.dto'
+import { WechatPhoneLoginDto } from './dto/wechat-phone-login.dto'
 import { ApplyBoosterDto } from './dto/apply-booster.dto'
 
 @ApiTags('认证')
@@ -17,6 +18,14 @@ export class AuthController {
   @ApiOkResponse({ description: '返回 { token, userInfo }，userInfo.role 区分 player/booster' })
   wechatLogin(@Body() dto: WechatLoginDto) {
     return this.authService.wechatLogin(dto)
+  }
+
+  @Public()
+  @Post('wechat-phone-login')
+  @ApiOperation({ summary: '微信一键登录（手机号快速验证授权，无需手填手机号）' })
+  @ApiOkResponse({ description: '返回 { token, userInfo }' })
+  wechatPhoneLogin(@Body() dto: WechatPhoneLoginDto) {
+    return this.authService.wechatLoginWithPhone(dto)
   }
 
   @Post('apply-booster')

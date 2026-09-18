@@ -62,7 +62,8 @@ export class UsersService {
       .skip((params.page - 1) * params.pageSize)
       .take(params.pageSize)
       .getManyAndCount()
-    return { list: list.map(toUserVO), total }
+    // 管理后台用户列表附加 openid（仅 admin 侧调用本方法）
+    return { list: list.map((u) => toUserVO(u, true)), total }
   }
 
   async toggleBan(id: number): Promise<User> {
@@ -105,20 +106,21 @@ export class UsersService {
     return !!user && user.banned
   }
 
-  /** 扣减余额（不足返回 false，不扣） */
+  /** 扣减余额（原子条件更新，余额不足返回 false，防并发超扣） */
   async deductBalance(id: number, amount: number): Promise<boolean> {
-    const user = await this.findByIdOrFail(id)
-    if (user.balance < amount) return false
-    user.balance -= amount
-    await this.userRepo.save(user)
-    return true
+    const res = await this.userRepo
+      .createQueryBuilder()
+      .update(User)
+      .set({ balance: () => `balance - ${amount}` })
+      .where('id = :id AND balance >= :amount', { id, amount })
+      .execute()
+    return !!res.affected
   }
 
-  /** 增加余额（充值/兑换） */
+  /** 增加余额（原子累加，防并发丢更新） */
   async addBalance(id: number, amount: number): Promise<User> {
-    const user = await this.findByIdOrFail(id)
-    user.balance += amount
-    return this.userRepo.save(user)
+    await this.userRepo.increment({ id }, 'balance', amount)
+    return this.findByIdOrFail(id)
   }
 
   /** 删除用户（级联删除其订单；若为打手，同时删除其打手档案，避免孤儿互相影响） */

@@ -43,6 +43,12 @@
         <el-table-column label="手机号" width="130">
           <template #default="{ row }">{{ row.phone || '-' }}</template>
         </el-table-column>
+        <el-table-column label="OpenID" min-width="200" show-overflow-tooltip>
+          <template #default="{ row }">
+            <span v-if="row.openid" class="openid-cell">{{ row.openid }}</span>
+            <span v-else>-</span>
+          </template>
+        </el-table-column>
         <el-table-column label="等级" width="90">
           <template #default="{ row }">Lv{{ row.level }}</template>
         </el-table-column>

@@ -1,7 +1,7 @@
 // custom-tab-bar/index.js
 // 自定义底部导航：按角色切换
 // 玩家: 首页 / 订单 / 我的
-// 打手: 工作台 / 消息 / 我的
+// 服务方: 工作台 / 消息 / 我的
 const auth = require('../utils/auth')
 
 const PLAYER_TABS = [

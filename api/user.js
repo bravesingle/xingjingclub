@@ -68,6 +68,26 @@ async function login(payload) {
   return res
 }
 
+/**
+ * 微信一键登录：wx.login 拿 code + getPhoneNumber 授权 code → 后端换手机号并登录
+ * @param payload { phoneCode, nickname?, gameId? }
+ * 返回: { token, userInfo }
+ */
+async function phoneLogin(payload) {
+  if (useMock()) return Promise.resolve(mock.login(payload))
+  const code = await getWxCode()
+  const res = await request.post('/auth/wechat-phone-login', {
+    code: code,
+    phoneCode: (payload && payload.phoneCode) || '',
+    nickname: (payload && payload.nickname) || '',
+    gameId: (payload && payload.gameId) || ''
+  })
+  if (res && res.token) {
+    auth.saveSession(res.token, res.userInfo)
+  }
+  return res
+}
+
 /** 获取用户信息 */
 function getUserInfo() {
   if (useMock()) return Promise.resolve(mock.getUser())
@@ -98,6 +118,7 @@ function logout() {
 
 module.exports = {
   login: login,
+  phoneLogin: phoneLogin,
   getUserInfo: getUserInfo,
   updateUserInfo: updateUserInfo,
   logout: logout

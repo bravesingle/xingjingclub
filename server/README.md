@@ -78,7 +78,9 @@ npm run start:dev           # http://localhost:3000/api
 | WECHAT_APPID / WECHAT_SECRET | 空 | 真实微信登录时填写 |
 | PAY_MOCK | true | 支付 mock；真实微信支付需商户接入 |
 | PAY_EXPIRE_MINUTES | 15 | 订单支付时限 |
-| JWT_SECRET / JWT_EXPIRES_IN | - / 7d | 令牌密钥与有效期 |
+| JWT_SECRET / JWT_EXPIRES_IN | - / 7d | 令牌密钥与有效期（生产强制强随机） |
+| DB_SYNCHRONIZE | true | 生产必须 `false`，改用 migration |
+| CORS_ORIGINS | localhost:5173 | 管理后台域名白名单（逗号分隔） |
 
 ## 目录结构
 
@@ -106,7 +108,9 @@ server/
 
 ## 上线注意事项
 
-- 生产环境：`synchronize` 改 `false`，使用 TypeORM migration 管理表结构
-- 数据库密码、JWT_SECRET 必须更换为强随机值
+- 生产环境：`DB_SYNCHRONIZE=false`，使用 TypeORM migration 管理表结构
+- 数据库密码、JWT_SECRET 必须更换为强随机值（`NODE_ENV=production` 时后端会强校验 JWT_SECRET）
 - 微信登录/支付需配置正式 appid/secret 与商户号，`WECHAT_MOCK=false`、`PAY_MOCK=false`
-- 部署可用 `npm run build` 产出 dist，`node dist/main` 运行（或 Dockerfile + PM2）
+- 管理后台跨域白名单用 `CORS_ORIGINS` 控制（小程序原生请求无 Origin，自动放行）
+- 部署可用 `npm run build` 产出 dist，`node dist/main.js` 运行（或 Dockerfile + PM2）
+- 资金一致性已内置：退款事务回滚分账、接单/兑换/提现防并发、余额原子扣减；详见根目录《上线检查清单.md》

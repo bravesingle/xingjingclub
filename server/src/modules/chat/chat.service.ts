@@ -47,9 +47,10 @@ export class ChatService {
     return this.msgRepo.save(msg)
   }
 
-  /** 聊天历史（升序） */
+  /** 聊天历史（升序），sentAt 统一转 number */
   async getHistory(orderId: number): Promise<ChatMessage[]> {
-    return this.msgRepo.find({ where: { orderId }, order: { sentAt: 'ASC' } })
+    const list = await this.msgRepo.find({ where: { orderId }, order: { sentAt: 'ASC' } })
+    return list.map((m) => ({ ...m, sentAt: Number(m.sentAt) }))
   }
 
   /** 后台查看：聊天历史 + 发送者名称（打手名 / 玩家昵称） */

@@ -1,5 +1,5 @@
 // pages/booster-work/booster-work.js
-// 打手工作台（tab index 0）：待接单池 / 我的订单 / 押金状态 / 下拉刷新
+// 工作台（tab index 0）：待接单池 / 我的订单 / 保证金状态 / 下拉刷新
 const boosterApi = require('../../api/booster')
 const auth = require('../../utils/auth')
 const format = require('../../utils/format')
@@ -10,12 +10,12 @@ Page({
     pool: [],         // 待接单池
     mine: [],         // 我的订单
     loading: true,
-    deposited: true,  // 押金是否已缴纳（getWallet.deposited）
+    deposited: true,  // 保证金是否已缴纳（getWallet.deposited）
     needLogin: false
   },
 
   onShow() {
-    // 自定义 tabBar：打手角色工作台为第 1 个 tab
+    // 自定义 tabBar：服务方角色工作台为第 1 个 tab
     if (this.getTabBar && this.getTabBar()) {
       this.getTabBar().refresh()
       this.getTabBar().setData({ selected: 0 })
@@ -33,7 +33,7 @@ Page({
       this.setData({ pool: [], mine: [], loading: false, needLogin: true })
       return
     }
-    // 已登录但非打手：跳回玩家首页
+    // 已登录但非服务方：跳回玩家首页
     if (!isBooster) {
       wx.switchTab({ url: '/pages/index/index' })
       return
@@ -54,7 +54,7 @@ Page({
     this.load()
   },
 
-  /** 并行加载：待接单池 + 我的订单 + 钱包押金状态 */
+  /** 并行加载：待接单池 + 我的订单 + 钱包保证金状态 */
   load() {
     this.setData({ loading: true })
     return Promise.all([
@@ -104,12 +104,12 @@ Page({
     })
   },
 
-  /** 去缴纳押金 */
+  /** 去缴纳保证金 */
   onGoDeposit() {
     wx.navigateTo({ url: '/pages/booster-wallet/booster-wallet' })
   },
 
-  /** 接单：先确认（未交押金先引导缴纳），成功后刷新 */
+  /** 接单：先确认（未交保证金先引导缴纳），成功后刷新 */
   onAccept(e) {
     const id = e.currentTarget.dataset.id
     if (!id) return
@@ -126,9 +126,9 @@ Page({
           wx.showToast({ title: '接单成功', icon: 'success' })
           this.load()
         }).catch((err) => {
-          // 失败：request.js 已统一 toast 错误信息；押金相关错误额外引导去钱包
+          // 失败：request.js 已统一 toast 错误信息；保证金相关错误额外引导去钱包
           const msg = (err && err.msg) || ''
-          if (msg.indexOf('押金') > -1 || msg.indexOf('deposit') > -1) {
+          if (msg.indexOf('保证金') > -1 || msg.indexOf('deposit') > -1) {
             this.setData({ deposited: false })
             this.promptDeposit()
           }
@@ -137,11 +137,11 @@ Page({
     })
   },
 
-  /** 押金引导弹窗 */
+  /** 保证金引导弹窗 */
   promptDeposit() {
     wx.showModal({
-      title: '缴纳押金',
-      content: '尚未缴纳押金，无法接单，是否前往缴纳？',
+      title: '缴纳保证金',
+      content: '尚未缴纳保证金，无法接单，是否前往缴纳？',
       confirmText: '去缴纳',
       confirmColor: '#FFD34D',
       success: (res) => {

@@ -1,10 +1,10 @@
 // pages/booster-apply/booster-apply.js
-// 打手入驻申请：姓名 / 手机号 / 擅长分类(多选) / 段位 / 备注
+// 入驻申请申请：姓名 / 手机号 / 擅长分类(多选) / 段位 / 备注
 const boosterApi = require('../../api/booster')
 
 const CATEGORY_OPTIONS = [
-  { label: '排位上分', value: 'rank' },
-  { label: '摸金带飞', value: 'loot' },
+  { label: '排位', value: 'rank' },
+  { label: '摸金', value: 'loot' },
   { label: '任务通关', value: 'task' },
   { label: '全面战场', value: 'warfare' }
 ]

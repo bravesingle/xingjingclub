@@ -20,7 +20,7 @@ export function toBoosterVO(booster: Booster) {
     deposited: booster.deposited,
     withdrawChannel: booster.withdrawChannel,
     withdrawAccount: booster.withdrawAccount,
-    joinedAt: booster.joinedAt,
+    joinedAt: booster.joinedAt === null || booster.joinedAt === undefined ? null : Number(booster.joinedAt),
     remark: booster.remark,
     createdAt: booster.createdAt ? new Date(booster.createdAt).getTime() : null
   }

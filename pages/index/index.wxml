@@ -10,9 +10,17 @@
     interval="4000"
     duration="400">
     <swiper-item wx:for="{{banners}}" wx:key="id">
-      <view class="banner-item" style="background:{{item.gradient}}">
-        <text class="banner-title">{{item.title}}</text>
-        <text class="banner-subtitle">{{item.subtitle}}</text>
+      <view
+        class="banner-item"
+        style="{{item.cover ? '' : 'background:' + item.gradient}}"
+        bindtap="onBannerTap"
+        data-link-type="{{item.linkType}}"
+        data-link-id="{{item.linkId}}">
+        <image wx:if="{{item.cover}}" class="banner-img" src="{{item.coverUrl}}" mode="aspectFill" />
+        <block wx:else>
+          <text class="banner-title">{{item.title}}</text>
+          <text class="banner-subtitle">{{item.subtitle}}</text>
+        </block>
       </view>
     </swiper-item>
   </swiper>
@@ -30,9 +38,9 @@
     </view>
   </view>
 
-  <!-- ③ 热门陪玩 -->
+  <!-- ③ 热门服务 -->
   <view class="section-head flex-between">
-    <view class="section-title">热门陪玩</view>
+    <view class="section-title">热门服务</view>
     <view class="view-all" bindtap="onViewAll">查看全部 ›</view>
   </view>
   <view wx:if="{{loading && !hotServices.length}}" class="loading-tip">加载中…</view>

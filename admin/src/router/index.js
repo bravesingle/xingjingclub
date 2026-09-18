@@ -27,6 +27,12 @@ const routes = [
         meta: { title: '服务商品' }
       },
       {
+        path: 'banners',
+        name: 'banners',
+        component: () => import('../views/Banners.vue'),
+        meta: { title: 'Banner 管理' }
+      },
+      {
         path: 'orders',
         name: 'orders',
         component: () => import('../views/Orders.vue'),

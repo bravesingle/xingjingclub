@@ -41,7 +41,7 @@ export class Order extends BaseEntity {
   @Column({ name: 'spec_value', type: 'int' })
   specValue: number
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', default: 0 })
   quantity: number
 
   @Column({ name: 'unit_price', type: 'int' })
@@ -50,6 +50,14 @@ export class Order extends BaseEntity {
   /** 实付金额（分） */
   @Column({ type: 'int' })
   amount: number
+
+  /** 支付渠道：wechat 微信支付 / balance 余额支付 / mock 开发模拟（退款时据此分流） */
+  @Column({ name: 'pay_channel', length: 16, default: '' })
+  payChannel: string
+
+  /** 微信支付交易号（transaction_id，微信支付成功回调后填充；余额/mock 为空） */
+  @Column({ name: 'wx_transaction_id', length: 64, default: '' })
+  wxTransactionId: string
 
   @Index()
   @Column({ length: 24, default: 'pending_pay' })

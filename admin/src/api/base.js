@@ -3,7 +3,8 @@
 // 契约：{ code, data, msg }，code 0 成功；401 自动清除登录态并跳登录页
 import axios from 'axios'
 
-export const API_BASE = 'http://127.0.0.1:3000/api'
+// 默认走 Vite 同源代理 /api（dev 与 Cloudflare 演示）；如需独立后端地址用 VITE_API_BASE 覆盖
+export const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 const TOKEN_KEY = 'xjes_admin_token'
 
 export function getToken() {
@@ -66,10 +67,13 @@ export function fenToYuan(fen) {
   return sign + Math.floor(fen / 100) + '.' + pad(Math.floor(fen % 100))
 }
 
-/** 时间戳 -> YYYY-MM-DD HH:mm */
+/** 时间戳 -> YYYY-MM-DD HH:mm；空值/非法返回 '-'（不乱码） */
 export function formatTime(ts, pattern) {
-  if (!ts) return '-'
-  const d = new Date(ts)
+  if (ts === null || ts === undefined || ts === '') return '-'
+  const n = Number(ts)
+  if (isNaN(n) || n <= 0) return '-'
+  const d = new Date(n)
+  if (isNaN(d.getTime())) return '-'
   const map = {
     YYYY: d.getFullYear(),
     MM: pad2(d.getMonth() + 1),

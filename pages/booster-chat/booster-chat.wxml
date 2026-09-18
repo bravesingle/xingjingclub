@@ -1,4 +1,4 @@
-<!-- pages/booster-chat/booster-chat.wxml 打手消息 -->
+<!-- pages/booster-chat/booster-chat.wxml 服务消息 -->
 <view class="page">
   <!-- 未登录引导 -->
   <view class="empty-wrap" wx:if="{{needLogin}}">

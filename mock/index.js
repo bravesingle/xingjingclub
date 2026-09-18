@@ -1,5 +1,5 @@
 // mock/index.js
-// 首页与陪玩服务商品 Mock 数据
+// 首页与服务服务商品 Mock 数据
 // 说明：
 //  - 所有价格字段单位为「分」，展示时用 utils/format.fenToYuan 转换
 //  - 服务规格按计价方式自动生成：按小时 / 按局，时长越长折扣越大
@@ -11,13 +11,13 @@ const BANNERS = [
   {
     id: 'b1',
     title: CONFIG.brand + ' · ' + CONFIG.gameName,
-    subtitle: '大神陪玩 · 稳定上分',
+    subtitle: '大神组队 · 快乐开黑',
     gradient: 'linear-gradient(135deg, #3A5BFF, #7B5CFF)'
   },
   {
     id: 'b2',
-    title: '烽火地带 · 摸金带飞',
-    subtitle: '高价值物资 · 保底撤离',
+    title: '烽火地带 · 摸金',
+    subtitle: '高价值物资 · 安全撤离',
     gradient: 'linear-gradient(135deg, #FFA940, #FF5B6A)'
   },
   {
@@ -29,17 +29,17 @@ const BANNERS = [
 ]
 
 const CATEGORIES = [
-  { id: 'rank', name: '排位上分', icon: '🏆', desc: '烽火地带排位' },
-  { id: 'loot', name: '摸金带飞', icon: '💎', desc: '物资撤离' },
+  { id: 'rank', name: '排位', icon: '🏆', desc: '烽火地带排位' },
+  { id: 'loot', name: '摸金', icon: '💎', desc: '物资撤离' },
   { id: 'task', name: '任务通关', icon: '🎯', desc: '行动任务' },
   { id: 'warfare', name: '全面战场', icon: '⚔️', desc: '大战场' }
 ]
 
 const COMMON_RULES = [
-  '下单后请添加客服微信确认游戏区服与上线时间；',
-  '陪玩过程中请保持语音沟通，便于带队指挥；',
+  '下单后请保持手机畅通，客服将与您确认服务时间；',
+  '服务过程中请保持语音沟通，便于带队指挥；',
   '如遇网络波动等不可抗力，服务时间顺延；',
-  '请勿在任何场景使用外挂，违者概不负责。'
+  '请遵守游戏规则，共同维护良好体验。'
 ]
 
 const COMMON_NOTICE = [
@@ -52,8 +52,8 @@ const COMMON_NOTICE = [
 const RAW_SERVICES = [
   {
     id: 's001',
-    title: '烽火地带 · 排位上分',
-    subtitle: '大神带队稳定冲分',
+    title: '烽火地带 · 排位',
+    subtitle: '大神带队稳定开黑',
     category: 'rank',
     mode: 'hazard',
     modeName: '烽火地带',
@@ -61,14 +61,14 @@ const RAW_SERVICES = [
     unitName: '小时',
     basePrice: 3000,
     coverGradient: 'linear-gradient(135deg, #3A5BFF, #7B5CFF)',
-    coverText: '排位上分',
-    tags: ['高胜率', '语音带飞', '胜率保障'],
+    coverText: '排位',
+    tags: ['氛围轻松', '语音服务', '体验保障'],
     sales: 2314,
     rating: 4.9
   },
   {
     id: 's002',
-    title: '烽火地带 · 摸金带飞',
+    title: '烽火地带 · 摸金',
     subtitle: '高价值地图物资收割',
     category: 'loot',
     mode: 'hazard',
@@ -77,8 +77,8 @@ const RAW_SERVICES = [
     unitName: '小时',
     basePrice: 3500,
     coverGradient: 'linear-gradient(135deg, #FFA940, #FF5B6A)',
-    coverText: '摸金带飞',
-    tags: ['物资满配', '保底撤离', '安全房区'],
+    coverText: '摸金',
+    tags: ['物资满配', '安全撤离', '安全房区'],
     sales: 1876,
     rating: 4.8
   },
@@ -100,8 +100,8 @@ const RAW_SERVICES = [
   },
   {
     id: 's004',
-    title: '全面战场 · 大战场陪玩',
-    subtitle: '整活上分两不误',
+    title: '全面战场 · 大战场',
+    subtitle: '整活开黑两不误',
     category: 'warfare',
     mode: 'warfare',
     modeName: '全面战场',
@@ -116,8 +116,8 @@ const RAW_SERVICES = [
   },
   {
     id: 's005',
-    title: '烽火地带 · 排位保底套餐',
-    subtitle: '承包段位稳定冲分',
+    title: '烽火地带 · 排位陪伴套餐',
+    subtitle: '全程陪伴稳定开黑',
     category: 'rank',
     mode: 'hazard',
     modeName: '烽火地带',
@@ -126,14 +126,14 @@ const RAW_SERVICES = [
     basePrice: 2800,
     coverGradient: 'linear-gradient(135deg, #3A5BFF, #2ECC71)',
     coverText: '保底套餐',
-    tags: ['段位保底', '时长更优', '全程跟进'],
+    tags: ['段位匹配', '时长更优', '全程跟进'],
     sales: 732,
     rating: 4.9
   },
   {
     id: 's006',
-    title: '全面战场 · 排位上分',
-    subtitle: '大战场冲分利器',
+    title: '全面战场 · 排位',
+    subtitle: '大战场开黑利器',
     category: 'rank',
     mode: 'warfare',
     modeName: '全面战场',
@@ -141,8 +141,8 @@ const RAW_SERVICES = [
     unitName: '局',
     basePrice: 1200,
     coverGradient: 'linear-gradient(135deg, #7B5CFF, #4D7CFF)',
-    coverText: '战场冲分',
-    tags: ['高胜率', '车队开黑'],
+    coverText: '战场开黑',
+    tags: ['氛围轻松', '车队开黑'],
     sales: 1103,
     rating: 4.8
   },
@@ -180,7 +180,7 @@ const RAW_SERVICES = [
   },
   {
     id: 's009',
-    title: '全面战场 · 任务陪练',
+    title: '全面战场 · 任务服务',
     subtitle: '每日任务快速完成',
     category: 'task',
     mode: 'warfare',
@@ -189,14 +189,14 @@ const RAW_SERVICES = [
     unitName: '局',
     basePrice: 1000,
     coverGradient: 'linear-gradient(135deg, #4D7CFF, #2ECC71)',
-    coverText: '任务陪练',
+    coverText: '任务服务',
     tags: ['每日任务', '快速完成'],
     sales: 388,
     rating: 4.7
   },
   {
     id: 's010',
-    title: '烽火地带 · 高段位陪玩',
+    title: '烽火地带 · 高段位',
     subtitle: '少校分段以上大神',
     category: 'rank',
     mode: 'hazard',
@@ -206,7 +206,7 @@ const RAW_SERVICES = [
     basePrice: 5000,
     coverGradient: 'linear-gradient(135deg, #FFD34D, #FF5B6A)',
     coverText: '高段位',
-    tags: ['高段位', '车队指挥', '胜率保障'],
+    tags: ['高段位', '车队指挥', '体验保障'],
     sales: 256,
     rating: 5.0
   }

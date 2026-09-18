@@ -44,10 +44,10 @@ function buildSpecs(priceUnit: string, basePrice: number) {
 }
 
 const RULES = [
-  '下单后请添加客服微信确认游戏区服与上线时间；',
-  '陪玩过程中请保持语音沟通，便于带队指挥；',
+  '下单后请保持手机畅通，客服将与您确认服务时间；',
+  '服务过程中请保持语音沟通，便于带队指挥；',
   '如遇网络波动等不可抗力，服务时间顺延；',
-  '请勿在任何场景使用外挂，违者概不负责。'
+  '请遵守游戏规则，共同维护良好体验。'
 ]
 const NOTICE = ['订单支付后不支持改单，请确认服务规格后下单；', '服务未开始前可申请全额退款；']
 
@@ -91,16 +91,16 @@ async function run() {
 
   // ===== 服务 =====
   const rawServices: Array<[string, string, string, string, string, number, string, string[], string]> = [
-    ['烽火地带 · 排位上分', '大神带队稳定冲分', 'rank', 'hazard', 'hour', 3000, '排位上分', ['高胜率', '语音带飞', '胜率保障'], 'linear-gradient(135deg,#3A5BFF,#7B5CFF)'],
-    ['烽火地带 · 摸金带飞', '高价值地图物资收割', 'loot', 'hazard', 'hour', 3500, '摸金带飞', ['物资满配', '保底撤离', '安全房区'], 'linear-gradient(135deg,#FFA940,#FF5B6A)'],
+    ['烽火地带 · 排位', '大神带队稳定开黑', 'rank', 'hazard', 'hour', 3000, '排位', ['氛围轻松', '语音服务', '体验保障'], 'linear-gradient(135deg,#3A5BFF,#7B5CFF)'],
+    ['烽火地带 · 摸金', '高价值地图物资收割', 'loot', 'hazard', 'hour', 3500, '摸金', ['物资满配', '安全撤离', '安全房区'], 'linear-gradient(135deg,#FFA940,#FF5B6A)'],
     ['烽火地带 · 任务通关', '通行证任务一键搞定', 'task', 'hazard', 'hour', 2000, '任务通关', ['任务全清', '效率极高', '随时开打'], 'linear-gradient(135deg,#2ECC71,#3A5BFF)'],
-    ['全面战场 · 大战场陪玩', '整活上分两不误', 'warfare', 'warfare', 'match', 1500, '全面战场', ['车队友好', '指挥到位', '稳定输出'], 'linear-gradient(135deg,#FF5B6A,#7B5CFF)'],
-    ['烽火地带 · 排位保底套餐', '承包段位稳定冲分', 'rank', 'hazard', 'hour', 2800, '保底套餐', ['段位保底', '时长更优', '全程跟进'], 'linear-gradient(135deg,#3A5BFF,#2ECC71)'],
-    ['全面战场 · 排位上分', '大战场冲分利器', 'rank', 'warfare', 'match', 1200, '战场冲分', ['高胜率', '车队开黑'], 'linear-gradient(135deg,#7B5CFF,#4D7CFF)'],
+    ['全面战场 · 大战场', '整活开黑两不误', 'warfare', 'warfare', 'match', 1500, '全面战场', ['车队友好', '指挥到位', '稳定输出'], 'linear-gradient(135deg,#FF5B6A,#7B5CFF)'],
+    ['烽火地带 · 排位陪伴套餐', '全程陪伴稳定开黑', 'rank', 'hazard', 'hour', 2800, '保底套餐', ['段位匹配', '时长更优', '全程跟进'], 'linear-gradient(135deg,#3A5BFF,#2ECC71)'],
+    ['全面战场 · 排位', '大战场开黑利器', 'rank', 'warfare', 'match', 1200, '战场开黑', ['氛围轻松', '车队开黑'], 'linear-gradient(135deg,#7B5CFF,#4D7CFF)'],
     ['烽火地带 · 萌新教学', '从零带你玩懂三角洲', 'task', 'hazard', 'hour', 1800, '萌新教学', ['新手友好', '基础教学', '点位讲解'], 'linear-gradient(135deg,#2ECC71,#FFA940)'],
     ['烽火地带 · 车队满配', '四排车队整装待发', 'loot', 'hazard', 'hour', 4000, '车队满配', ['四排', '物资拉满', '稳定撤离'], 'linear-gradient(135deg,#FFA940,#FFD34D)'],
-    ['全面战场 · 任务陪练', '每日任务快速完成', 'task', 'warfare', 'match', 1000, '任务陪练', ['每日任务', '快速完成'], 'linear-gradient(135deg,#4D7CFF,#2ECC71)'],
-    ['烽火地带 · 高段位陪玩', '少校分段以上大神', 'rank', 'hazard', 'hour', 5000, '高段位', ['高段位', '车队指挥', '胜率保障'], 'linear-gradient(135deg,#FFD34D,#FF5B6A)']
+    ['全面战场 · 任务服务', '每日任务快速完成', 'task', 'warfare', 'match', 1000, '任务服务', ['每日任务', '快速完成'], 'linear-gradient(135deg,#4D7CFF,#2ECC71)'],
+    ['烽火地带 · 高段位', '少校分段以上大神', 'rank', 'hazard', 'hour', 5000, '高段位', ['高段位', '车队指挥', '体验保障'], 'linear-gradient(135deg,#FFD34D,#FF5B6A)']
   ]
   const salesArr = [2314, 1876, 965, 1520, 732, 1103, 645, 498, 388, 256]
   const ratingArr = [4.9, 4.8, 4.9, 4.7, 4.9, 4.8, 5.0, 4.9, 4.7, 5.0]
@@ -186,7 +186,7 @@ async function run() {
   const settingsRepo = managers.setting
   await settingsRepo.save([
     settingsRepo.create({ key: 'customerServiceWechat', value: JSON.stringify('XJES-KF') }),
-    settingsRepo.create({ key: 'notice', value: JSON.stringify('星竞电竞 · 大神陪玩，稳定上分！') }),
+    settingsRepo.create({ key: 'notice', value: JSON.stringify('星竞电竞 · 大神组队，快乐开黑！') }),
     settingsRepo.create({ key: 'payTimeoutMinutes', value: JSON.stringify(15) }),
     settingsRepo.create({ key: 'orderOpen', value: JSON.stringify(true) }),
     settingsRepo.create({ key: 'payWechat', value: JSON.stringify(true) }),

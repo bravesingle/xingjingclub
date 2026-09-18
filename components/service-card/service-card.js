@@ -11,9 +11,14 @@ Component({
   },
   observers: {
     service(s) {
-      if (s && s.specs && s.specs.length) {
-        this.setData({ priceText: format.fenToYuan(s.specs[0].price) })
+      if (!s) return
+      const patch = {}
+      if (s.specs && s.specs.length) {
+        patch.priceText = format.fenToYuan(s.specs[0].price)
       }
+      // 封面图片：相对路径转完整 URL（无图时为空，WXML 回退渐变占位）
+      patch.coverUrl = format.coverUrl(s.cover)
+      this.setData(patch)
     }
   },
   methods: {

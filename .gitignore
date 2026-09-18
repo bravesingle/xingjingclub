@@ -16,3 +16,7 @@ Thumbs.db
 
 # 编译临时目录
 .tea/
+
+# 本地敏感信息备忘（含密码，禁止入库）
+.local-secrets.md
+server/certs/

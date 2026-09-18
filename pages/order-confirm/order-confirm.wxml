@@ -30,7 +30,7 @@
   <!-- ③ 留言备注 -->
   <view class="card">
     <view class="remark-title text-main">留言备注</view>
-    <textarea class="form-textarea" placeholder="选填：打手要求、上分目标等" maxlength="100" value="{{remark}}" bindinput="onRemarkInput" />
+    <textarea class="form-textarea" placeholder="选填：服务偏好、语音要求等" maxlength="100" value="{{remark}}" bindinput="onRemarkInput" />
   </view>
 
   <!-- ④ 价格明细 -->
@@ -38,13 +38,6 @@
     <view class="flex-between price-row">
       <text class="text-sub">商品金额</text>
       <text class="text-main">¥{{totalText}}</text>
-    </view>
-    <view class="flex-between price-row">
-      <text class="text-sub">优惠</text>
-      <view class="flex">
-        <text class="text-main">-¥0.00</text>
-        <text class="text-dim coupon-tip">优惠券功能开发中</text>
-      </view>
     </view>
     <view class="divider"></view>
     <view class="flex-between">

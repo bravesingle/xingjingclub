@@ -100,10 +100,18 @@ function onSubmit() {
 
 .login-card {
   width: 400px;
+  max-width: calc(100vw - 32px);
   background: #fff;
   border-radius: 12px;
   padding: 40px 36px 24px;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    padding: 32px 24px 20px;
+    border-radius: 10px;
+  }
 }
 
 .brand {

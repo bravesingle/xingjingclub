@@ -1,6 +1,13 @@
 import { Order } from './order.entity'
 
-/** 订单对外 VO：时间统一毫秒时间戳 */
+/** bigint 时间戳统一转 number（TypeORM bigint 列会返回字符串，前端 new Date 会 Invalid） */
+function ts(v: number | string | null | undefined): number | null {
+  if (v === null || v === undefined || v === '') return null
+  const n = Number(v)
+  return isNaN(n) ? null : n
+}
+
+/** 订单对外 VO：时间统一毫秒时间戳（number） */
 export function toOrderVO(order: Order) {
   return {
     id: order.id,
@@ -25,15 +32,15 @@ export function toOrderVO(order: Order) {
     // 分账明细：平台抽成 + 打手收入（分）
     platformIncome: Math.round((order.amount * (order.platformRate || 0)) / 100),
     boosterIncome: order.amount - Math.round((order.amount * (order.platformRate || 0)) / 100),
-    payExpireAt: order.payExpireAt,
-    paidAt: order.paidAt,
-    startedAt: order.startedAt,
-    completedAt: order.completedAt,
-    cancelledAt: order.cancelledAt,
+    payExpireAt: ts(order.payExpireAt),
+    paidAt: ts(order.paidAt),
+    startedAt: ts(order.startedAt),
+    completedAt: ts(order.completedAt),
+    cancelledAt: ts(order.cancelledAt),
     refundReason: order.refundReason,
     refundFrom: order.refundFrom,
-    refundedAt: order.refundedAt,
-    refundRejectedAt: order.refundRejectedAt,
+    refundedAt: ts(order.refundedAt),
+    refundRejectedAt: ts(order.refundRejectedAt),
     createdAt: order.createdAt ? new Date(order.createdAt).getTime() : null
   }
 }

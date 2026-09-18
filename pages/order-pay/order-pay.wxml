@@ -23,35 +23,15 @@
 
   <!-- ③ 支付方式 -->
   <view class="card">
-    <view class="pay-item flex-between" data-method="balance" bindtap="onSelectMethod">
-      <view class="flex">
-        <view class="pay-icon pay-icon-balance">余</view>
-        <view class="column">
-          <text class="text-main">余额支付</text>
-          <text class="text-dim">当前余额 ¥{{balanceYuan}}</text>
-        </view>
-      </view>
-      <view class="radio {{payMethod === 'balance' ? 'radio-on' : ''}}"></view>
-    </view>
     <view class="pay-item flex-between" data-method="wechat" bindtap="onSelectMethod">
       <view class="flex">
         <view class="pay-icon pay-icon-wechat">微</view>
         <view class="column">
           <text class="text-main">微信支付</text>
-          <text class="text-dim">推荐使用微信支付</text>
+          <text class="text-dim">安全便捷，推荐使用</text>
         </view>
       </view>
       <view class="radio {{payMethod === 'wechat' ? 'radio-on' : ''}}"></view>
-    </view>
-    <view class="pay-item flex-between" wx:if="{{mockPayEnabled}}" data-method="mock" bindtap="onSelectMethod">
-      <view class="flex">
-        <view class="pay-icon pay-icon-mock">模</view>
-        <view class="column">
-          <text class="text-main">模拟支付（开发）</text>
-          <text class="text-dim">开发阶段免真实支付</text>
-        </view>
-      </view>
-      <view class="radio {{payMethod === 'mock' ? 'radio-on' : ''}}"></view>
     </view>
   </view>
 

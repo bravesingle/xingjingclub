@@ -1,50 +1,22 @@
-<!-- pages/booster-wallet/booster-wallet.wxml 打手钱包 -->
+<!-- pages/booster-wallet/booster-wallet.wxml 保证金（收入结算由平台线下处理） -->
 <view class="page safe-bottom">
-  <!-- ① 余额卡 -->
-  <view class="card balance-card">
-    <view class="balance-label text-sub">可提现余额（元）</view>
-    <view class="balance-main">
-      <text class="price price-symbol">¥</text>
-      <text class="price price-num balance-num">{{balanceYuan}}</text>
-    </view>
-    <view class="balance-stats">
-      <view class="balance-stat">
-        <view class="stat-label text-dim">冻结中</view>
-        <view class="stat-value">{{frozenYuan}}</view>
-      </view>
-      <view class="balance-stat">
-        <view class="stat-label text-dim">累计收入</view>
-        <view class="stat-value">{{totalIncomeYuan}}</view>
-      </view>
-      <view class="balance-stat">
-        <view class="stat-label text-dim">已提现</view>
-        <view class="stat-value">{{withdrawnYuan}}</view>
-      </view>
-    </view>
-  </view>
-
-  <!-- ② 押金 -->
-  <view class="section-title">押金</view>
+  <!-- ① 保证金 -->
+  <view class="section-title">保证金</view>
   <view class="card flex-between">
     <view class="flex-1">
-      <view wx:if="{{wallet.deposited}}" class="text-success text-bold">押金已缴纳</view>
+      <view wx:if="{{wallet.deposited}}" class="text-success text-bold">保证金已缴纳</view>
       <block wx:else>
-        <view class="text-sub">未缴纳押金</view>
-        <view class="text-dim deposit-tip">押金 ¥{{depositAmount}}，缴纳后即可接单与提现</view>
+        <view class="text-sub">未缴纳保证金</view>
+        <view class="text-dim deposit-tip">保证金 ¥{{depositAmount}}，缴纳后即可开始接单</view>
       </block>
     </view>
-    <view wx:if="{{!wallet.deposited}}" class="btn btn-gold btn-sm" bindtap="onPayDeposit">缴纳押金</view>
+    <view wx:if="{{!wallet.deposited}}" class="btn btn-gold btn-sm" bindtap="onPayDeposit">缴纳保证金</view>
     <view wx:else class="tag tag-green">已缴纳</view>
   </view>
 
-  <!-- ③ 提现 -->
-  <view class="section-title">提现</view>
+  <!-- ② 说明 -->
   <view class="card">
-    <view class="flex-between withdraw-row">
-      <text class="text-sub">可提现余额</text>
-      <text class="price">¥{{balanceYuan}}</text>
-    </view>
-    <view class="text-dim withdraw-tip">金额以元为单位，提交后由平台审核打款至微信零钱</view>
-    <view class="btn btn-primary btn-block {{canWithdraw && !submitting ? '' : 'btn-disabled'}}" bindtap="onWithdraw">{{withdrawBtnText}}</view>
+    <view class="section-title">说明</view>
+    <view class="text-dim deposit-tip">保证金用于保障服务履约；服务收入由平台统一结算，具体以平台规则为准。</view>
   </view>
 </view>

@@ -1,14 +1,14 @@
-<!-- pages/booster-work/booster-work.wxml 打手工作台 -->
+<!-- pages/booster-work/booster-work.wxml 工作台 -->
 <view class="page">
   <!-- 未登录引导 -->
   <view class="empty-wrap" wx:if="{{needLogin}}">
-    <empty text="登录后使用工作台" subText="接单与提现都需要登录" btnText="去登录" bind:action="onGoLogin" />
+    <empty text="登录后使用工作台" subText="接单需要登录" btnText="去登录" bind:action="onGoLogin" />
   </view>
 
   <block wx:else>
-    <!-- 押金提示条 -->
+    <!-- 保证金提示条（未缴纳时显示；缴纳入口见下） -->
     <view class="deposit-tip flex-between" wx:if="{{!deposited}}">
-      <text class="deposit-tip-text">尚未缴纳押金，无法接单</text>
+      <text class="deposit-tip-text">尚未缴纳保证金，无法接单</text>
       <view class="btn btn-gold btn-sm" bindtap="onGoDeposit">去缴纳</view>
     </view>
 

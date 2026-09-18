@@ -13,7 +13,7 @@ Page({
     total: 0,
     totalText: '0.00',
     showRules: false,
-    customerServiceWechat: config.customerServiceWechat
+    customerServicePhone: config.customerServicePhone
   },
 
   onLoad(options) {
@@ -41,6 +41,8 @@ Page({
         })
       })
       service.specs = specs
+      // 封面图片完整 URL（无图回退渐变占位）
+      service.coverUrl = format.coverUrl(service.cover)
       this.setData({ service: service, selectedIndex: 0, quantity: 1, showRules: false })
       this.calcTotal()
     }).catch(() => {
@@ -77,11 +79,9 @@ Page({
   },
 
   onCopyWechat() {
-    wx.setClipboardData({
-      data: this.data.customerServiceWechat,
-      success: function () {
-        wx.showToast({ title: '客服微信已复制', icon: 'success' })
-      }
+    wx.makePhoneCall({
+      phoneNumber: config.customerServicePhone,
+      fail: function () {}
     })
   },
 

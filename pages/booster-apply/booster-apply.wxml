@@ -1,9 +1,9 @@
-<!-- pages/booster-apply/booster-apply.wxml 打手入驻申请 -->
+<!-- pages/booster-apply/booster-apply.wxml 入驻申请申请 -->
 <view class="page safe-bottom">
   <!-- ① 说明 -->
   <view class="card apply-tip">
     <view class="text-sub text-bold">入驻说明</view>
-    <view class="text-dim apply-tip-text">填写申请信息提交后，平台将在 1-2 个工作日内完成审核；审核通过并缴纳押金后即可接单。</view>
+    <view class="text-dim apply-tip-text">填写申请信息提交后，平台将在 1-2 个工作日内完成审核；审核通过并缴纳保证金后即可开始接单。</view>
   </view>
 
   <!-- ② 申请表单 -->
@@ -29,13 +29,13 @@
     <view class="form-cell apply-cell">
       <view class="form-label">收款方式</view>
       <view class="channel-list">
-        <view class="category-item {{withdrawChannel === 'wechat' ? 'category-item-on' : ''}}" data-channel="wechat" bindtap="onWithdrawChannel">微信</view>
         <view class="category-item {{withdrawChannel === 'bank' ? 'category-item-on' : ''}}" data-channel="bank" bindtap="onWithdrawChannel">银行卡</view>
+        <view class="category-item {{withdrawChannel === 'other' ? 'category-item-on' : ''}}" data-channel="other" bindtap="onWithdrawChannel">其他</view>
       </view>
     </view>
     <view class="form-cell">
       <view class="form-label">收款账号</view>
-      <input class="form-input" placeholder="微信号或银行卡号" placeholder-class="apply-placeholder" value="{{withdrawAccount}}" bindinput="onWithdrawAccountInput" maxlength="50" />
+      <input class="form-input" placeholder="银行卡号" placeholder-class="apply-placeholder" value="{{withdrawAccount}}" bindinput="onWithdrawAccountInput" maxlength="50" />
     </view>
     <view class="form-cell apply-cell">
       <view class="form-label">备注</view>

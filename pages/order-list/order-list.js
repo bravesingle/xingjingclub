@@ -99,11 +99,9 @@ Page({
   },
 
   onCardContact() {
-    wx.setClipboardData({
-      data: config.customerServiceWechat,
-      success: () => {
-        wx.showToast({ title: '客服微信已复制', icon: 'none' })
-      }
+    wx.makePhoneCall({
+      phoneNumber: config.customerServicePhone,
+      fail: () => {}
     })
   },
 

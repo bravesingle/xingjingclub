@@ -1,6 +1,10 @@
 <view class="scard card" bindtap="onTap">
-  <view class="scard-cover" style="background:{{service.coverGradient}}">
-    <text class="scard-cover-text">{{service.coverText}}</text>
+  <view class="scard-cover">
+    <image wx:if="{{coverUrl}}" class="scard-cover-img" src="{{coverUrl}}" mode="aspectFill" />
+    <block wx:else>
+      <view class="scard-cover-bg" style="background:{{service.coverGradient}}"></view>
+      <text class="scard-cover-text">{{service.coverText}}</text>
+    </block>
     <text class="scard-mode">{{service.modeName}}</text>
   </view>
   <view class="scard-body">

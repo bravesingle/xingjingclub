@@ -1,5 +1,5 @@
 // pages/booster-chat/booster-chat.js
-// 打手消息（tab index 1）：可聊天会话 = 服务中/已完成订单，按最近时间倒序
+// 服务消息（tab index 1）：可聊天会话 = 服务中/已完成订单，按最近时间倒序
 const boosterApi = require('../../api/booster')
 const auth = require('../../utils/auth')
 const format = require('../../utils/format')
@@ -12,7 +12,7 @@ Page({
   },
 
   onShow() {
-    // 自定义 tabBar：打手角色消息为第 2 个 tab
+    // 自定义 tabBar：服务方角色消息为第 2 个 tab
     if (this.getTabBar && this.getTabBar()) {
       this.getTabBar().refresh()
       this.getTabBar().setData({ selected: 1 })
@@ -24,7 +24,7 @@ Page({
       this.setData({ sessions: [], loading: false, needLogin: true })
       return
     }
-    // 已登录但非打手：跳回玩家首页
+    // 已登录但非服务方：跳回玩家首页
     if (!isBooster) {
       wx.switchTab({ url: '/pages/index/index' })
       return

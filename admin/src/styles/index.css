@@ -52,3 +52,33 @@ body,
   background-size: cover;
   background-position: center;
 }
+
+/* ===== 移动端适配（≤768px，配合管理后台手机演示） ===== */
+@media (max-width: 768px) {
+  .page-card {
+    padding: 12px;
+    border-radius: 6px;
+  }
+  .page-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .page-toolbar .toolbar-left,
+  .page-toolbar .toolbar-right {
+    flex-wrap: wrap;
+  }
+  .cover-block {
+    width: 44px;
+    height: 32px;
+    font-size: 10px;
+  }
+  /* 弹窗窄屏不溢出 */
+  .el-dialog {
+    --el-dialog-width: 92vw;
+  }
+  .el-dialog__body {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}

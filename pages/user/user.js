@@ -13,12 +13,12 @@ Page({
     balanceYuan: '0.00',
     counts: { pending_pay: 0, in_progress: 0, completed: 0 },
     brand: config.brand,
-    serviceWechat: config.customerServiceWechat,
+    servicePhone: config.customerServicePhone,
     version: config.version
   },
 
   onShow() {
-    // 自定义 tabBar：玩家/打手角色下"我的"均为第 3 个 tab
+    // 自定义 tabBar：玩家/服务方角色下"我的"均为第 3 个 tab
     if (this.getTabBar && this.getTabBar()) {
       this.getTabBar().refresh()
       this.getTabBar().setData({ selected: 2 })
@@ -39,7 +39,7 @@ Page({
     if (userInfo && userInfo.nickname) {
       avatarText = userInfo.nickname.charAt(0)
     }
-    // 打手角色判断（决定"我的"页打手入口：工作台/钱包 or 成为打手）
+    // 服务方角色判断（决定"我的"页服务方入口：工作台/钱包 or 申请成为服务方）
     const isBooster = !!(userInfo && userInfo.role === 'booster')
     const balanceYuan = format.fenToYuan((userInfo && userInfo.balance) || 0)
     this.setData({
@@ -108,7 +108,7 @@ Page({
     wx.switchTab({ url: '/pages/order-list/order-list' })
   },
 
-  /** 我的订单（打手 → 工作台"我的订单"；玩家 → 订单列表） */
+  /** 我的订单（服务方 → 工作台"我的订单"；玩家 → 订单列表） */
   onAllOrders() {
     if (this.data.isBooster) {
       wx.setStorageSync('xjes_booster_tab', 'mine')
@@ -119,27 +119,27 @@ Page({
     }
   },
 
-  /** 打手工作台（tab 页） */
+  /** 工作台（tab 页） */
   onBoosterWork() {
     wx.switchTab({ url: '/pages/booster-work/booster-work' })
   },
 
-  /** 打手钱包 */
+  /** 服务钱包 */
   onBoosterWallet() {
     wx.navigateTo({ url: '/pages/booster-wallet/booster-wallet' })
   },
 
-  /** 成为打手（入驻申请） */
+  /** 申请成为服务方（入驻申请） */
   onBoosterApply() {
     wx.navigateTo({ url: '/pages/booster-apply/booster-apply' })
   },
 
-  /** 联系客服：复制客服微信 */
+  /** 联系客服：拨打客服电话 */
   onContact() {
-    wx.setClipboardData({
-      data: config.customerServiceWechat,
-      success: () => {
-        wx.showToast({ title: '客服微信已复制', icon: 'none' })
+    wx.makePhoneCall({
+      phoneNumber: config.customerServicePhone,
+      fail: () => {
+        // 用户取消拨号无需提示
       }
     })
   },
@@ -165,7 +165,7 @@ Page({
         userApi.logout().then(() => {
           wx.showToast({ title: '已清除', icon: 'success' })
           this.refreshAll()
-          // 退出后回到玩家默认首页（避免停留在打手界面）
+          // 退出后回到玩家默认首页（避免停留在服务方界面）
           wx.switchTab({ url: '/pages/index/index' })
         })
       }

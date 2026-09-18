@@ -1,5 +1,5 @@
 // pages/order-detail/order-detail.js
-// 订单详情：状态头部 + 倒计时 + 服务信息 + 订单信息 + 状态操作（玩家/打手不同视角）
+// 订单详情：状态头部 + 倒计时 + 服务信息 + 订单信息 + 状态操作（玩家/服务方不同视角）
 const orderApi = require('../../api/order')
 const auth = require('../../utils/auth')
 const config = require('../../config/index')
@@ -9,7 +9,7 @@ const format = require('../../utils/format')
 const STATUS_DESC = {
   pending_pay: '请尽快完成支付，超时将自动取消',
   paid: '已支付，等待客服安排服务',
-  in_progress: '陪玩服务进行中',
+  in_progress: '服务进行中',
   completed: '订单已完成，感谢使用',
   cancelled: '订单已取消',
   refunding: '退款申请处理中',
@@ -30,7 +30,7 @@ Page({
 
   onLoad(options) {
     const orderId = decodeURIComponent(options.id || options.orderId || '')
-    // 打手视角：只显示信息 + 进入聊天，不显示玩家操作按钮
+    // 服务方视角：只显示信息 + 进入聊天，不显示玩家操作按钮
     const userInfo = auth.getUserInfo()
     this.setData({
       orderId: orderId,
@@ -39,7 +39,7 @@ Page({
     this.load()
   },
 
-  /** 打手进入聊天 */
+  /** 服务方进入聊天 */
   onGoChat() {
     wx.navigateTo({
       url: '/pages/chat/chat?orderId=' + encodeURIComponent(this.data.orderId)
@@ -102,7 +102,7 @@ Page({
   onComplete() {
     wx.showModal({
       title: '确认完成',
-      content: '确认本次陪玩服务已完成？',
+      content: '确认本次服务已完成？',
       success: (res) => {
         if (!res.confirm) return
         orderApi.completeOrder(this.data.orderId).then(() => {
@@ -124,11 +124,9 @@ Page({
   },
 
   onContact() {
-    wx.setClipboardData({
-      data: config.customerServiceWechat,
-      success: () => {
-        wx.showToast({ title: '客服微信已复制', icon: 'none' })
-      }
+    wx.makePhoneCall({
+      phoneNumber: config.customerServicePhone,
+      fail: () => {}
     })
   }
 })

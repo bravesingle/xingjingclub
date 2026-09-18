@@ -22,9 +22,30 @@ function acceptOrder(orderId) {
   return request.post('/booster/orders/' + orderId + '/accept')
 }
 
-/** 缴纳押金 */
+/**
+ * 缴纳保证金：向平台预下单 → 拉起微信支付
+ * - PAY_MOCK=true：后端直接标记已缴纳（payParams 为空）
+ * - 真实环境：返回 payParams，前端拉起微信支付；支付结果由微信回调后端更新
+ */
 function payDeposit() {
-  return request.post('/booster/deposit/pay')
+  return request.post('/pay/wechat/deposit').then(function (res) {
+    if (!res || !res.payParams) return res
+    return new Promise(function (resolve, reject) {
+      wx.requestPayment({
+        timeStamp: res.payParams.timeStamp,
+        nonceStr: res.payParams.nonceStr,
+        package: res.payParams.package,
+        signType: res.payParams.signType,
+        paySign: res.payParams.paySign,
+        success: function () {
+          resolve(res)
+        },
+        fail: function (err) {
+          reject(err)
+        }
+      })
+    })
+  })
 }
 
 /** 钱包（余额/冻结/总收入/押金状态） */

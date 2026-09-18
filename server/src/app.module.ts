@@ -18,6 +18,7 @@ import { AdminModule } from './modules/admin/admin.module'
 import { UploadModule } from './modules/upload/upload.module'
 import { ChatModule } from './modules/chat/chat.module'
 import { FundModule } from './modules/fund/fund.module'
+import { BannersModule } from './modules/banners/banners.module'
 
 @Module({
   imports: [
@@ -36,8 +37,8 @@ import { FundModule } from './modules/fund/fund.module'
         database: config.get('DB_DATABASE', 'xingjing'),
         charset: 'utf8mb4',
         autoLoadEntities: true,
-        // 开发期自动同步表结构；生产建议改用 migration
-        synchronize: true,
+        // 开发期自动同步表结构；生产环境必须设 DB_SYNCHRONIZE=false 并改用 migration
+        synchronize: config.get('DB_SYNCHRONIZE', 'true') === 'true',
         logging: false
       })
     }),
@@ -46,10 +47,22 @@ import { FundModule } from './modules/fund/fund.module'
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        secret: config.get('JWT_SECRET', 'xingjing-esports-secret'),
-        signOptions: { expiresIn: config.get('JWT_EXPIRES_IN', '7d') }
-      })
+      useFactory: (config: ConfigService) => {
+        // 安全：JWT_SECRET 必须显式配置，缺失直接启动报错（不回退硬编码弱默认）
+        const secret = config.get<string>('JWT_SECRET')
+        if (!secret) {
+          throw new Error('JWT_SECRET 环境变量未配置，请检查 .env（生产环境必须为强随机值）')
+        }
+        if (config.get('NODE_ENV') === 'production') {
+          if (secret.length < 32 || secret === 'xingjing-esports-change-me') {
+            throw new Error('生产环境 JWT_SECRET 过弱，请设置至少 32 位的强随机值')
+          }
+        }
+        return {
+          secret,
+          signOptions: { expiresIn: config.get('JWT_EXPIRES_IN', '7d') }
+        }
+      }
     }),
 
     // 供全局 JWT 守卫校验用户封禁状态
@@ -67,7 +80,8 @@ import { FundModule } from './modules/fund/fund.module'
     AdminModule,
     UploadModule,
     ChatModule,
-    FundModule
+    FundModule,
+    BannersModule
   ],
   providers: [
     // 全局 JWT 认证：接口默认需登录，@Public() 放行

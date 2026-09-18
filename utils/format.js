@@ -1,9 +1,23 @@
 // utils/format.js
 // 通用格式化工具
+const config = require('../config/index')
 
 function pad(n) {
   n = Number(n)
   return n < 10 ? '0' + n : '' + n
+}
+
+/**
+ * 图片相对路径（如 /uploads/img-xxx.png）→ 完整 URL（按当前环境 baseUrl 拼 origin）
+ * 绝对 URL（http/https 开头）原样返回；空值返回 ''
+ * 例：dev 环境 "/uploads/a.png" → "http://127.0.0.1:3000/uploads/a.png"
+ */
+function coverUrl(path) {
+  if (!path) return ''
+  if (/^https?:\/\//.test(path)) return path
+  const base = (config.baseUrl && config.baseUrl[config.env]) || ''
+  const origin = base.replace(/\/api\/?$/, '')
+  return origin + path
 }
 
 /** 分 -> 元字符串，如 2500 -> "25.00" */
@@ -15,10 +29,13 @@ function fenToYuan(fen) {
   return sign + Math.floor(fen / 100) + '.' + pad(Math.floor(fen % 100))
 }
 
-/** 时间戳 -> 字符串，pattern 支持 YYYY MM DD HH mm ss */
+/** 时间戳 -> 字符串，pattern 支持 YYYY MM DD HH mm ss；空值/非法返回 ''（不乱码） */
 function formatTime(ts, pattern) {
-  if (!ts) return ''
-  const d = new Date(ts)
+  if (ts === null || ts === undefined || ts === '') return ''
+  const n = Number(ts)
+  if (isNaN(n) || n <= 0) return ''
+  const d = new Date(n)
+  if (isNaN(d.getTime())) return ''
   const map = {
     YYYY: d.getFullYear(),
     MM: pad(d.getMonth() + 1),
@@ -51,5 +68,6 @@ module.exports = {
   pad,
   fenToYuan,
   formatTime,
-  orderStatus
+  orderStatus,
+  coverUrl
 }

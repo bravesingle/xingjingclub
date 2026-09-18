@@ -84,7 +84,7 @@ Page({
         }
       }).catch(() => {
         this.setData({ submitting: false })
-        wx.showToast({ title: '余额不足，请先充值', icon: 'none' })
+        wx.showToast({ title: '余额不足，请选择微信支付', icon: 'none' })
       })
       return
     }
