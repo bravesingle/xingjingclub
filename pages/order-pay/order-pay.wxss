@@ -48,12 +48,13 @@
 }
 
 .pay-icon-mock {
-  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
+  background: linear-gradient(135deg, #63E6F7, #8B5CF6);
+  color: #07111D;
 }
 
 .pay-icon-balance {
-  background: linear-gradient(135deg, #FFD34D, #FFA940);
-  color: #3A2E00;
+  background: linear-gradient(135deg, #F8C76B, #FF7A90);
+  color: #1A1020;
 }
 
 /* radio */

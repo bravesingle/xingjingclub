@@ -136,7 +136,7 @@
 .spec-active {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(255, 211, 77, 0.08);
+  background: rgba(248, 199, 107, 0.10);
 }
 
 .spec-active .spec-price {

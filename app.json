@@ -18,17 +18,17 @@
     "pages/login/login"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#0F1222",
+    "navigationBarBackgroundColor": "#090D16",
     "navigationBarTitleText": "星竞电竞",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#0F1222",
+    "backgroundColor": "#090D16",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
     "custom": true,
     "color": "#8A8FA3",
-    "selectedColor": "#FFD34D",
-    "backgroundColor": "#141830",
+    "selectedColor": "#63E6F7",
+    "backgroundColor": "#0D1320",
     "borderStyle": "black",
     "list": [
       {

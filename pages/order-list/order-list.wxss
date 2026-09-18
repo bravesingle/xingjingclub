@@ -28,10 +28,10 @@
 }
 
 .tab-on {
-  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #63E6F7, #8B5CF6);
+  color: #07111D;
   font-weight: 600;
-  box-shadow: 0 8rpx 18rpx rgba(77, 124, 255, 0.22);
+  box-shadow: 0 8rpx 18rpx rgba(99, 230, 247, 0.22);
 }
 
 /* 列表间距 */

@@ -2,8 +2,8 @@
 
 /* 说明卡 */
 .apply-tip {
-  background: linear-gradient(135deg, rgba(255, 211, 77, 0.12), rgba(255, 169, 64, 0.06));
-  border: 2rpx solid rgba(255, 211, 77, 0.25);
+  background: linear-gradient(135deg, rgba(99, 230, 247, 0.12), rgba(139, 92, 246, 0.08));
+  border: 2rpx solid rgba(99, 230, 247, 0.22);
 }
 
 .apply-tip-text {
@@ -41,7 +41,7 @@
 
 .category-item-on {
   border-color: var(--gold);
-  background: rgba(255, 211, 77, 0.12);
+  background: rgba(248, 199, 107, 0.12);
   color: var(--gold);
 }
 

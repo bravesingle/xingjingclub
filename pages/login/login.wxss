@@ -1,56 +1,168 @@
 /* pages/login/login.wxss 登录页私有样式 */
 
 .login-page {
+  position: relative;
   min-height: 100vh;
   box-sizing: border-box;
-  padding-bottom: calc(200rpx + env(safe-area-inset-bottom));
+  padding: 40rpx 28rpx calc(200rpx + env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 22% 8%, rgba(99, 230, 247, 0.20), transparent 30%),
+    radial-gradient(circle at 86% 14%, rgba(139, 92, 246, 0.24), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(248, 199, 107, 0.10), transparent 34%);
+}
+
+.sky-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: rgba(244, 247, 251, 0.88);
+  text-shadow: 0 0 18rpx rgba(99, 230, 247, 0.7);
+}
+
+.star-a { top: 62rpx; left: 68rpx; font-size: 30rpx; }
+.star-b { top: 168rpx; right: 62rpx; font-size: 38rpx; color: rgba(248, 199, 107, 0.92); }
+.star-c { top: 432rpx; left: 42rpx; font-size: 24rpx; color: rgba(99, 230, 247, 0.82); }
+.star-d { top: 572rpx; right: 86rpx; font-size: 26rpx; }
+
+.star-dot {
+  position: absolute;
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background: rgba(244, 247, 251, 0.88);
+  box-shadow: 0 0 16rpx rgba(244, 247, 251, 0.65);
+}
+
+.dot-a { top: 118rpx; left: 246rpx; }
+.dot-b { top: 284rpx; right: 176rpx; width: 8rpx; height: 8rpx; background: var(--primary); }
+.dot-c { top: 720rpx; left: 144rpx; }
+.dot-d { top: 832rpx; right: 232rpx; background: var(--gold); }
+ 
+.brand-area,
+.login-card,
+.agree-row,
+.footer-bar {
+  position: relative;
+  z-index: 1;
 }
 
 /* 品牌区 */
 .brand-area {
-  padding: 88rpx 0 48rpx;
+  padding: 72rpx 0 44rpx;
   text-align: center;
 }
 
+.brand-mark {
+  width: 108rpx;
+  height: 108rpx;
+  margin: 0 auto 24rpx;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 48rpx;
+  background: linear-gradient(145deg, rgba(99, 230, 247, 0.18), rgba(139, 92, 246, 0.20));
+  border: 2rpx solid rgba(99, 230, 247, 0.26);
+  box-shadow: 0 22rpx 60rpx rgba(99, 230, 247, 0.16);
+}
+
 .brand-title {
-  font-size: 64rpx;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 6rpx;
+  font-size: 68rpx;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 4rpx;
+  text-shadow: 0 0 28rpx rgba(99, 230, 247, 0.24);
 }
 
 .brand-slogan {
-  margin-top: 12rpx;
-  letter-spacing: 4rpx;
+  margin-top: 14rpx;
+  letter-spacing: 3rpx;
 }
 
 /* 表单卡 */
 .login-card {
-  padding: 40rpx 32rpx;
+  padding: 36rpx 32rpx 34rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(180deg, rgba(22, 32, 52, 0.92), rgba(13, 19, 32, 0.94));
+  border: 2rpx solid rgba(99, 230, 247, 0.18);
+  box-shadow: 0 30rpx 70rpx rgba(0, 0, 0, 0.30);
+}
+
+.login-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.login-eyebrow {
+  color: var(--primary);
+  font-size: 20rpx;
+  letter-spacing: 4rpx;
+  margin-bottom: 8rpx;
 }
 
 .login-label {
-  font-size: 36rpx;
-  font-weight: 600;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.mini-star {
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  background: rgba(248, 199, 107, 0.12);
 }
 
 .login-tip {
-  margin: 8rpx 0 28rpx;
+  margin: 12rpx 0 30rpx;
+  line-height: 1.7;
 }
 
 .login-input {
   width: 100%;
-  height: 88rpx;
-  padding: 0 24rpx;
+  height: 96rpx;
+  padding: 0 28rpx;
   box-sizing: border-box;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.055);
+  border: 2rpx solid rgba(255, 255, 255, 0.08);
 }
 
 .login-input + .login-input {
-  margin-top: 24rpx;
+  margin-top: 20rpx;
 }
 
 .input-placeholder {
   color: var(--text-dim);
+}
+
+.login-perks {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+}
+
+.login-perks text {
+  padding: 8rpx 16rpx;
+  margin: 0 12rpx 12rpx 0;
+  border-radius: 999rpx;
+  color: var(--primary);
+  font-size: 22rpx;
+  background: rgba(99, 230, 247, 0.10);
+  border: 2rpx solid rgba(99, 230, 247, 0.10);
 }
 
 /* 协议行 */
@@ -58,7 +170,7 @@
   display: flex;
   align-items: flex-start;
   margin-top: 28rpx;
-  padding: 0 8rpx;
+  padding: 0 10rpx;
 }
 
 .agree-check {
@@ -66,7 +178,7 @@
   height: 36rpx;
   border-radius: 50%;
   border: 2rpx solid var(--line);
-  background: var(--bg-card-2);
+  background: rgba(255, 255, 255, 0.06);
   margin-right: 16rpx;
   flex-shrink: 0;
   display: flex;
@@ -76,12 +188,12 @@
 }
 
 .agree-check-on {
-  border-color: var(--gold);
-  background: var(--gold);
+  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
 }
 
 .agree-check-mark {
-  color: #3A2E00;
+  color: #07111D;
   font-size: 26rpx;
   font-weight: 700;
   line-height: 1;
@@ -94,11 +206,11 @@
 }
 
 .agree-link {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 .login-desc {
-  margin: 24rpx 8rpx 0;
+  margin: 12rpx 8rpx 0;
   font-size: 22rpx;
   line-height: 1.7;
 }
@@ -120,7 +232,7 @@
 
 /* disabled 时保持金色底（原生 button 默认会把禁用态变灰） */
 .login-btn[disabled] {
-  color: #3A2E00;
-  background: linear-gradient(135deg, #FFD34D, #FFA940);
+  color: #1A1020;
+  background: linear-gradient(135deg, #F8C76B, #FF7A90);
   opacity: 0.5;
 }

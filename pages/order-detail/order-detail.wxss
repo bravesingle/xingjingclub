@@ -2,8 +2,8 @@
 
 /* 状态头部 */
 .status-card {
-  background: linear-gradient(135deg, rgba(77, 124, 255, 0.18), rgba(123, 92, 255, 0.18));
-  border: 2rpx solid rgba(77, 124, 255, 0.35);
+  background: linear-gradient(135deg, rgba(99, 230, 247, 0.14), rgba(139, 92, 246, 0.18));
+  border: 2rpx solid rgba(99, 230, 247, 0.26);
 }
 
 .status-title {

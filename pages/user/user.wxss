@@ -15,8 +15,8 @@
   width: 108rpx;
   height: 108rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #63E6F7, #8B5CF6);
+  color: #07111D;
   font-size: 44rpx;
   font-weight: 600;
   display: flex;

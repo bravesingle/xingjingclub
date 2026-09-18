@@ -143,7 +143,7 @@ Page({
       title: '缴纳保证金',
       content: '尚未缴纳保证金，无法接单，是否前往缴纳？',
       confirmText: '去缴纳',
-      confirmColor: '#FFD34D',
+      confirmColor: '#63E6F7',
       success: (res) => {
         if (res.confirm) {
           wx.navigateTo({ url: '/pages/booster-wallet/booster-wallet' })

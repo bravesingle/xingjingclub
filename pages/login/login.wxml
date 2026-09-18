@@ -1,17 +1,42 @@
 <!-- pages/login/login.wxml 登录页 -->
 <view class="page login-page">
+  <view class="sky-layer">
+    <view class="star star-a">✦</view>
+    <view class="star star-b">✧</view>
+    <view class="star star-c">✦</view>
+    <view class="star star-d">✧</view>
+    <view class="star-dot dot-a"></view>
+    <view class="star-dot dot-b"></view>
+    <view class="star-dot dot-c"></view>
+    <view class="star-dot dot-d"></view>
+  </view>
+
   <!-- ① 品牌区 -->
   <view class="brand-area">
+    <view class="brand-mark">
+      <text>✦</text>
+    </view>
     <view class="brand-title">{{brand}}</view>
     <view class="brand-slogan text-sub">{{brandSlogan}}</view>
   </view>
 
   <!-- ② 资料卡（昵称/游戏ID 选填，一键登录后自动创建账号） -->
   <view class="card login-card">
-    <view class="login-label">手机号快捷登录</view>
-    <view class="login-tip text-dim">授权手机号即可快速开始服务</view>
+    <view class="login-card-head">
+      <view>
+        <view class="login-eyebrow">PLAYER ACCESS</view>
+        <view class="login-label">手机号快捷登录</view>
+      </view>
+      <view class="mini-star">✦</view>
+    </view>
+    <view class="login-tip text-dim">授权手机号后即可开始下单、查看订单与进入聊天</view>
     <input class="form-input login-input" placeholder="请输入昵称（选填）" placeholder-class="input-placeholder" value="{{nickname}}" bindinput="onNicknameInput" maxlength="20" />
     <input class="form-input login-input" placeholder="请输入游戏ID（选填）" placeholder-class="input-placeholder" value="{{gameId}}" bindinput="onGameIdInput" maxlength="30" />
+    <view class="login-perks">
+      <text>星级陪玩</text>
+      <text>订单保障</text>
+      <text>专属客服</text>
+    </view>
     <view class="login-desc text-dim">手机号仅用于订单联系与身份核验</view>
   </view>
 

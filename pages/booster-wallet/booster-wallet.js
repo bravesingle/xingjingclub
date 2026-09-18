@@ -36,7 +36,7 @@ Page({
       title: '缴纳保证金',
       content: '确认缴纳 ¥' + DEPOSIT_AMOUNT + ' 保证金？缴纳后即可开始接单。',
       confirmText: '确认缴纳',
-      confirmColor: '#FFD34D',
+      confirmColor: '#63E6F7',
       success: (res) => {
         if (!res.confirm) return
         this.setData({ submitting: true })
