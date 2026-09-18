@@ -5,10 +5,24 @@
     <view class="star star-b">✧</view>
     <view class="star star-c">✦</view>
     <view class="star star-d">✧</view>
+    <view class="star star-e">✦</view>
+    <view class="star star-f">✧</view>
+    <view class="star star-g">✦</view>
+    <view class="star star-h">✧</view>
+    <view class="shooting-star shooting-a"></view>
+    <view class="shooting-star shooting-b"></view>
     <view class="star-dot dot-a"></view>
     <view class="star-dot dot-b"></view>
     <view class="star-dot dot-c"></view>
     <view class="star-dot dot-d"></view>
+    <view class="star-dot dot-e"></view>
+    <view class="star-dot dot-f"></view>
+    <view class="star-dot dot-g"></view>
+    <view class="star-dot dot-h"></view>
+    <view class="star-dot dot-i"></view>
+    <view class="star-dot dot-j"></view>
+    <view class="star-dot dot-k"></view>
+    <view class="star-dot dot-l"></view>
   </view>
 
   <!-- ① 品牌区 -->
@@ -17,7 +31,7 @@
       <text>✦</text>
     </view>
     <view class="brand-title">{{brand}}</view>
-    <view class="brand-slogan text-sub">{{brandSlogan}}</view>
+    <view class="brand-slogan text-sub">星夜服务 · 安心下单</view>
   </view>
 
   <!-- ② 资料卡（昵称/游戏ID 选填，一键登录后自动创建账号） -->
@@ -33,7 +47,7 @@
     <input class="form-input login-input" placeholder="请输入昵称（选填）" placeholder-class="input-placeholder" value="{{nickname}}" bindinput="onNicknameInput" maxlength="20" />
     <input class="form-input login-input" placeholder="请输入游戏ID（选填）" placeholder-class="input-placeholder" value="{{gameId}}" bindinput="onGameIdInput" maxlength="30" />
     <view class="login-perks">
-      <text>星级陪玩</text>
+      <text>星级服务</text>
       <text>订单保障</text>
       <text>专属客服</text>
     </view>

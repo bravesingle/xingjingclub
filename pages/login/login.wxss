@@ -31,6 +31,24 @@
 .star-b { top: 168rpx; right: 62rpx; font-size: 38rpx; color: rgba(248, 199, 107, 0.92); }
 .star-c { top: 432rpx; left: 42rpx; font-size: 24rpx; color: rgba(99, 230, 247, 0.82); }
 .star-d { top: 572rpx; right: 86rpx; font-size: 26rpx; }
+.star-e { top: 256rpx; left: 122rpx; font-size: 20rpx; color: rgba(139, 92, 246, 0.86); }
+.star-f { top: 360rpx; right: 34rpx; font-size: 22rpx; }
+.star-g { top: 686rpx; left: 54rpx; font-size: 30rpx; color: rgba(248, 199, 107, 0.78); }
+.star-h { top: 908rpx; right: 48rpx; font-size: 20rpx; color: rgba(99, 230, 247, 0.80); }
+
+.shooting-star {
+  position: absolute;
+  width: 130rpx;
+  height: 2rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, transparent, rgba(244, 247, 251, 0.88), transparent);
+  transform: rotate(-22deg);
+  opacity: 0.72;
+  box-shadow: 0 0 18rpx rgba(99, 230, 247, 0.36);
+}
+
+.shooting-a { top: 214rpx; left: 320rpx; }
+.shooting-b { top: 792rpx; left: 118rpx; width: 96rpx; opacity: 0.46; }
 
 .star-dot {
   position: absolute;
@@ -45,6 +63,14 @@
 .dot-b { top: 284rpx; right: 176rpx; width: 8rpx; height: 8rpx; background: var(--primary); }
 .dot-c { top: 720rpx; left: 144rpx; }
 .dot-d { top: 832rpx; right: 232rpx; background: var(--gold); }
+.dot-e { top: 72rpx; right: 228rpx; width: 4rpx; height: 4rpx; }
+.dot-f { top: 238rpx; left: 38rpx; width: 5rpx; height: 5rpx; background: rgba(139, 92, 246, 0.90); }
+.dot-g { top: 394rpx; left: 286rpx; width: 4rpx; height: 4rpx; }
+.dot-h { top: 508rpx; right: 188rpx; width: 6rpx; height: 6rpx; background: var(--primary); }
+.dot-i { top: 624rpx; left: 316rpx; width: 5rpx; height: 5rpx; }
+.dot-j { top: 756rpx; right: 54rpx; width: 4rpx; height: 4rpx; }
+.dot-k { top: 944rpx; left: 236rpx; width: 7rpx; height: 7rpx; background: rgba(248, 199, 107, 0.92); }
+.dot-l { top: 1040rpx; right: 132rpx; width: 4rpx; height: 4rpx; }
  
 .brand-area,
 .login-card,
