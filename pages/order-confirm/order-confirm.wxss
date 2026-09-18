@@ -13,6 +13,7 @@
   font-size: 26rpx;
   font-weight: 600;
   color: #FFFFFF;
+  text-align: center;
 }
 
 .svc-title {
@@ -26,6 +27,15 @@
 
 .svc-bottom {
   margin-top: 16rpx;
+  align-items: flex-end;
+  gap: 12rpx;
+}
+
+.svc-bottom .tag {
+  max-width: 220rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* 价格明细 */

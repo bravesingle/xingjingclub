@@ -3,6 +3,12 @@
 /* 退款金额 */
 .refund-amount-card {
   align-items: flex-end;
+  gap: 20rpx;
+}
+
+.refund-amount-card .text-dim {
+  max-width: 260rpx;
+  text-align: right;
 }
 
 .amount-num {
@@ -15,6 +21,7 @@
   padding: 26rpx 0;
   border-bottom: 2rpx solid var(--line);
   border-radius: 12rpx;
+  gap: 20rpx;
 }
 
 .reason-item:last-child {

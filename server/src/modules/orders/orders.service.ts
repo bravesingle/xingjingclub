@@ -127,10 +127,14 @@ export class OrdersService {
     return counts
   }
 
-  /** 取消订单（待支付/已支付 → 已取消） */
+  /** 取消订单：待支付直接取消；已支付未接单则自动退款 */
   async cancelMine(userId: number, orderId: number) {
     const order = await this.assertMine(userId, orderId)
-    this.transition(order, 'cancel')
+    if (order.status === ORDER_STATUS.paid) {
+      await this.cancelPaidOrderWithRefund(order, '用户取消已支付订单')
+    } else {
+      this.transition(order, 'cancel')
+    }
     return toOrderVO(await this.orderRepo.save(order))
   }
 
@@ -253,7 +257,9 @@ export class OrdersService {
   /** 管理端状态流转：cancel/start/complete/approve_refund/reject_refund */
   async adminAction(orderId: number, action: string) {
     const order = await this.findOrder(orderId)
-    if (action === 'start' && order.status === ORDER_STATUS.paid) {
+    if (action === 'cancel' && order.status === ORDER_STATUS.paid) {
+      await this.cancelPaidOrderWithRefund(order, '管理端取消已支付订单')
+    } else if (action === 'start' && order.status === ORDER_STATUS.paid) {
       order.status = ORDER_STATUS.in_progress
       order.startedAt = Date.now()
     } else {
@@ -280,7 +286,7 @@ export class OrdersService {
    * - balance：退回用户余额
    * - mock / 旧单未标记：无真实资金动作（仅站内累计消费回滚）
    */
-  private async refundToPayer(order: Order): Promise<void> {
+  private async refundToPayer(order: Order, reason = '管理端同意退款'): Promise<void> {
     const channel = order.payChannel || ''
     if (channel === 'wechat') {
       // 老订单升级：若当时已通过微信回调置 paid 但没有 wxTransactionId，拒绝自动退并提示人工
@@ -293,7 +299,7 @@ export class OrdersService {
           outTradeNo: order.orderNo,
           amountFen: order.amount,
           refundFen: order.amount,
-          reason: '管理端同意退款'
+          reason
         })
         this.logger.log(`✅ 微信退款已受理: order=${order.orderNo} refundId=${result.refund_id} status=${result.status}`)
       } catch (e) {
@@ -305,6 +311,17 @@ export class OrdersService {
       await this.usersService.addBalance(order.userId, order.amount)
     }
     // mock 或未标记渠道：无真实资金，仅改站内状态
+  }
+
+  /** 已支付但未开始服务的订单取消时，直接退回付款并记录为已退款 */
+  private async cancelPaidOrderWithRefund(order: Order, reason: string): Promise<void> {
+    this.transition(order, 'cancel')
+    order.refundFrom = ORDER_STATUS.paid
+    order.refundReason = reason
+    await this.refundToPayer(order, reason)
+    await this.fundService.approveRefundSettlement(order)
+    order.status = ORDER_STATUS.refunded
+    order.refundedAt = Date.now()
   }
 
   /* ============ 内部 ============ */

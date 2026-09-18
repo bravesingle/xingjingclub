@@ -25,6 +25,7 @@ page {
   font-size: 28rpx;
   line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  min-height: 100vh;
 }
 
 /* 页面容器 */
@@ -39,6 +40,7 @@ page {
 /* 卡片 */
 .card {
   background: var(--bg-card);
+  border: 2rpx solid rgba(255, 255, 255, 0.03);
   border-radius: 20rpx;
   padding: 24rpx;
   box-sizing: border-box;
@@ -64,6 +66,7 @@ page {
 .text-center { text-align: center; }
 .text-bold { font-weight: 600; }
 .text-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.text-main { color: var(--text-main); }
 
 .section-title {
   font-size: 32rpx;
@@ -113,7 +116,10 @@ page {
   padding: 0 40rpx;
   height: 88rpx;
   box-sizing: border-box;
+  min-width: 0;
+  white-space: nowrap;
 }
+.btn:active { opacity: 0.86; }
 .btn-block { width: 100%; }
 .btn-primary { background: linear-gradient(135deg, #4D7CFF, #7B5CFF); color: #FFFFFF; }
 .btn-gold { background: linear-gradient(135deg, #FFD34D, #FFA940); color: #3A2E00; }
@@ -153,6 +159,7 @@ page {
   justify-content: space-between;
   padding: 28rpx 0;
   border-bottom: 2rpx solid var(--line);
+  min-width: 0;
 }
 .cell:last-child { border-bottom: none; }
 .cell-arrow {
@@ -173,6 +180,8 @@ page {
   padding: 6rpx 18rpx;
   border-radius: 24rpx;
   font-size: 22rpx;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .st-pending { color: var(--warning); background: rgba(255, 159, 67, 0.15); }
 .st-paid { color: var(--primary); background: rgba(77, 124, 255, 0.15); }
@@ -190,6 +199,7 @@ page {
   bottom: 0;
   background: var(--bg-card);
   border-top: 2rpx solid var(--line);
+  box-shadow: 0 -16rpx 36rpx rgba(0, 0, 0, 0.28);
   padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;

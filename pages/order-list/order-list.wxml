@@ -1,15 +1,17 @@
 <!-- pages/order-list/order-list.wxml 订单列表 -->
 <view class="page">
   <!-- 顶部状态 tab -->
-  <view class="tab-bar">
-    <view
-      class="tab-item {{activeTab === item.key ? 'tab-on' : ''}}"
-      wx:for="{{tabs}}"
-      wx:key="key"
-      data-key="{{item.key}}"
-      bindtap="onTabTap"
-    >{{item.name}}</view>
-  </view>
+  <scroll-view class="tab-scroll" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view class="tab-bar">
+      <view
+        class="tab-item {{activeTab === item.key ? 'tab-on' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onTabTap"
+      >{{item.name}}</view>
+    </view>
+  </scroll-view>
 
   <!-- 未登录引导 -->
   <view class="empty-wrap" wx:if="{{needLogin}}">

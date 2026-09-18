@@ -187,7 +187,7 @@ const DRAWER_ACTIONS = {
   pending_pay: [{ label: '取消订单', type: 'danger', plain: true, action: 'cancel' }],
   paid: [
     { label: '开始服务', type: 'success', action: 'start' },
-    { label: '取消订单', type: 'danger', plain: true, action: 'cancel' }
+    { label: '取消并退款', type: 'danger', plain: true, action: 'cancel' }
   ],
   in_progress: [{ label: '标记完成', type: 'success', action: 'complete' }],
   refunding: [

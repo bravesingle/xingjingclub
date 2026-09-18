@@ -1,27 +1,37 @@
 /* pages/order-list/order-list.wxss 私有样式 */
 
 /* 顶部 tab 栏 */
+.tab-scroll {
+  width: 100%;
+  margin-bottom: 24rpx;
+  white-space: nowrap;
+}
+
 .tab-bar {
-  display: flex;
+  display: inline-flex;
+  min-width: 100%;
   background: var(--bg-card);
   border-radius: 16rpx;
   padding: 8rpx;
-  margin-bottom: 24rpx;
+  box-sizing: border-box;
 }
 
 .tab-item {
-  flex: 1;
+  flex: 0 0 auto;
+  min-width: 112rpx;
   text-align: center;
-  padding: 16rpx 0;
-  font-size: 28rpx;
+  padding: 16rpx 20rpx;
+  font-size: 26rpx;
   color: var(--text-sub);
   border-radius: 12rpx;
+  white-space: nowrap;
 }
 
 .tab-on {
   background: linear-gradient(135deg, #4D7CFF, #7B5CFF);
   color: #FFFFFF;
   font-weight: 600;
+  box-shadow: 0 8rpx 18rpx rgba(77, 124, 255, 0.22);
 }
 
 /* 列表间距 */

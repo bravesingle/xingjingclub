@@ -12,6 +12,7 @@ Page({
       { key: 'in_progress', name: '服务中' },
       { key: 'completed', name: '已完成' },
       { key: 'refunding', name: '退款中' },
+      { key: 'refunded', name: '已退款' },
       { key: 'cancelled', name: '已取消' }
     ],
     activeTab: 'all',
