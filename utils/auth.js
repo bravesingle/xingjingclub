@@ -17,6 +17,10 @@ function getUserInfo() {
 
 function setUserInfo(userInfo) {
   wx.setStorageSync(USER_KEY, userInfo)
+  const app = getApp()
+  if (app) {
+    app.globalData.userInfo = userInfo
+  }
 }
 
 function clearSession() {

@@ -7,6 +7,17 @@ function applyBooster(payload) {
   return request.post('/auth/apply-booster', payload)
 }
 
+/** 玩家端：打手列表（支持昵称/ID/游戏ID 搜索） */
+function getBoosters(keyword) {
+  const data = keyword ? { keyword: keyword } : {}
+  return request.get('/boosters', data)
+}
+
+/** 玩家端：打手详情 */
+function getBoosterDetail(id) {
+  return request.get('/boosters/' + id)
+}
+
 /** 工作台：待接单订单池 */
 function getPool() {
   return request.get('/booster/orders/pool')
@@ -60,6 +71,8 @@ function withdraw(amount) {
 
 module.exports = {
   applyBooster: applyBooster,
+  getBoosters: getBoosters,
+  getBoosterDetail: getBoosterDetail,
   getPool: getPool,
   getMyOrders: getMyOrders,
   acceptOrder: acceptOrder,

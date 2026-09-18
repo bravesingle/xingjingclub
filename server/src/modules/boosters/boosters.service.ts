@@ -25,13 +25,50 @@ export class BoostersService {
     private readonly withdrawalRepo: Repository<Withdrawal>
   ) {}
 
-  /** 小程序端：可接单打手列表（已审核 + 在线，P2 打手模块使用） */
-  async listForUser() {
-    const list = await this.boosterRepo.find({
-      where: { audit: 'approved', online: true },
-      order: { rating: 'DESC' }
+  /** 小程序端：可接单打手列表（已审核 + 在线），支持昵称/ID/游戏ID 搜索 */
+  async listForUser(keyword = '') {
+    const kw = (keyword || '').trim()
+    const qb = this.boosterRepo
+      .createQueryBuilder('b')
+      .leftJoin(User, 'u', 'u.booster_id = b.id OR u.id = b.user_id')
+      .where('b.audit = :audit', { audit: 'approved' })
+      .andWhere('b.online = :online', { online: true })
+      .orderBy('b.accepting', 'DESC')
+      .addOrderBy('b.rating', 'DESC')
+      .addOrderBy('b.order_count', 'DESC')
+      .select('b')
+      .addSelect(['u.id', 'u.nickname', 'u.avatar', 'u.gameId'])
+
+    if (kw) {
+      const id = Number(kw)
+      qb.andWhere(
+        '(b.name LIKE :kw OR b.rank LIKE :kw OR b.remark LIKE :kw OR u.nickname LIKE :kw OR u.game_id LIKE :kw' +
+          (!isNaN(id) ? ' OR b.id = :id OR u.id = :id' : '') +
+          ')',
+        { kw: `%${kw}%`, id }
+      )
+    }
+
+    const rows = await qb.getRawAndEntities()
+    return rows.entities.map((booster, index) => {
+      const raw = rows.raw[index] || {}
+      return this.toPublicBoosterVO(booster, raw)
     })
-    return list.map(toBoosterVO)
+  }
+
+  /** 小程序端：打手详情 */
+  async getForUser(id: number) {
+    const qb = this.boosterRepo
+      .createQueryBuilder('b')
+      .leftJoin(User, 'u', 'u.booster_id = b.id OR u.id = b.user_id')
+      .where('b.id = :id', { id })
+      .andWhere('b.audit = :audit', { audit: 'approved' })
+      .andWhere('b.online = :online', { online: true })
+      .select('b')
+      .addSelect(['u.id', 'u.nickname', 'u.avatar', 'u.gameId'])
+    const { entities, raw } = await qb.getRawAndEntities()
+    if (!entities.length) throw new NotFoundException('打手不存在或暂未上线')
+    return this.toPublicBoosterVO(entities[0], raw[0] || {})
   }
 
   /** 管理端列表 */
@@ -163,5 +200,31 @@ export class BoostersService {
     const booster = await this.boosterRepo.findOne({ where: { id } })
     if (!booster) throw new NotFoundException('打手不存在')
     return booster
+  }
+
+  private toPublicBoosterVO(booster: Booster, raw: Record<string, any> = {}) {
+    const userNickname = raw.u_nickname || ''
+    const userAvatar = raw.u_avatar || ''
+    const gameId = raw.u_game_id || raw.u_gameId || ''
+    return {
+      id: booster.id,
+      name: booster.name,
+      displayName: userNickname || booster.name,
+      avatar: userAvatar || booster.avatar,
+      playerNickname: userNickname,
+      gameId,
+      categories: booster.categories || [],
+      categoryNames: booster.categoryNames || [],
+      mode: booster.mode,
+      rank: booster.rank,
+      rating: booster.rating,
+      orderCount: booster.orderCount,
+      online: booster.online,
+      accepting: booster.accepting,
+      deposited: booster.deposited,
+      joinedAt: booster.joinedAt === null || booster.joinedAt === undefined ? null : Number(booster.joinedAt),
+      remark: booster.remark,
+      createdAt: booster.createdAt ? new Date(booster.createdAt).getTime() : null
+    }
   }
 }

@@ -1,0 +1,58 @@
+<!-- pages/booster-select/booster-select.wxml 选择打手 -->
+<view class="page select-page">
+  <view class="search-card">
+    <view class="search-icon">⌕</view>
+    <input
+      class="search-input"
+      placeholder="搜索打手昵称 / ID / 游戏ID"
+      placeholder-class="search-placeholder"
+      value="{{keyword}}"
+      confirm-type="search"
+      bindinput="onKeywordInput"
+      bindconfirm="onSearch"
+    />
+    <view class="search-clear" wx:if="{{keyword}}" catchtap="onClearSearch">×</view>
+    <view class="search-btn" catchtap="onSearch">搜索</view>
+  </view>
+
+  <view class="select-title">
+    <view>
+      <view class="title-main">星选打手</view>
+      <view class="title-sub">从数据库实时读取已上线打手信息</view>
+    </view>
+    <view class="title-star">✦</view>
+  </view>
+
+  <view class="booster-list" wx:if="{{list.length > 0}}">
+    <view
+      class="booster-card"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onGoDetail"
+    >
+      <view class="avatar-wrap">
+        <image wx:if="{{item.avatar}}" class="avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar-fallback">{{item.avatarText}}</view>
+      </view>
+      <view class="booster-info">
+        <view class="booster-top">
+          <view class="booster-name text-ellipsis">{{item.displayName}}</view>
+          <view class="status-pill {{item.statusCls}}">{{item.statusText}}</view>
+        </view>
+        <view class="booster-meta text-sub">ID {{item.id}} · {{item.rankText}} · {{item.rating}} 分</view>
+        <view class="booster-tags">
+          <text class="tag tag-mini">{{item.categoryText}}</text>
+          <text class="tag tag-mini tag-gold">{{item.orderCountText}} 单</text>
+        </view>
+        <view class="booster-remark text-dim">{{item.remarkText}}</view>
+      </view>
+      <view class="card-arrow"></view>
+    </view>
+  </view>
+
+  <view wx:elif="{{!loading}}" class="empty-wrap">
+    <empty text="暂无匹配打手" subText="换个昵称、ID 或游戏ID试试" />
+  </view>
+  <view wx:else class="loading-tip text-center text-dim">加载中…</view>
+</view>

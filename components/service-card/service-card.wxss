@@ -2,6 +2,10 @@
   padding: 0;
   overflow: hidden;
   margin-top: 20rpx;
+  animation: fadeUp 0.42s ease both;
+}
+.scard:active {
+  transform: scale(0.988);
 }
 .scard-cover {
   position: relative;
@@ -10,6 +14,18 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+.scard-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -42%;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+  transform: skewX(-18deg);
+  z-index: 2;
+  animation: coverShine 5.6s ease-in-out infinite;
 }
 .scard-cover::after {
   content: '';
@@ -41,7 +57,7 @@
   color: rgba(255, 255, 255, 0.92);
   letter-spacing: 4rpx;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .scard-mode {
   position: absolute;
@@ -52,7 +68,32 @@
   background: rgba(0, 0, 0, 0.42);
   padding: 4rpx 16rpx;
   border-radius: 20rpx;
-  z-index: 2;
+  z-index: 3;
+}
+
+@keyframes coverShine {
+  0%, 62% {
+    transform: translateX(0) skewX(-18deg);
+    opacity: 0;
+  }
+  72% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(430%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .scard-body {
   padding: 20rpx 24rpx 24rpx;

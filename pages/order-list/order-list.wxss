@@ -25,6 +25,10 @@
   color: var(--text-sub);
   border-radius: 12rpx;
   white-space: nowrap;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+.tab-item:active {
+  transform: scale(0.96);
 }
 
 .tab-on {
@@ -32,6 +36,7 @@
   color: #07111D;
   font-weight: 600;
   box-shadow: 0 8rpx 18rpx rgba(99, 230, 247, 0.22);
+  animation: glowPulse 3.6s ease-in-out infinite;
 }
 
 /* 列表间距 */

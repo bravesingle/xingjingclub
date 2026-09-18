@@ -6,6 +6,7 @@ const auth = require('../utils/auth')
 
 const PLAYER_TABS = [
   { pagePath: '/pages/index/index', text: '首页', icon: '🏠' },
+  { pagePath: '/pages/booster-select/booster-select', text: '选人', icon: '⭐', navType: 'navigate' },
   { pagePath: '/pages/order-list/order-list', text: '订单', icon: '📋' },
   { pagePath: '/pages/user/user', text: '我的', icon: '👤' }
 ]
@@ -37,9 +38,14 @@ Component({
     },
     onTabTap(e) {
       const index = e.currentTarget.dataset.index
-      const path = this.data.list[index].pagePath
+      const item = this.data.list[index]
+      const path = item.pagePath
       if (index === this.data.selected) return
-      wx.switchTab({ url: path })
+      if (item.navType === 'navigate') {
+        wx.navigateTo({ url: path })
+      } else {
+        wx.switchTab({ url: path })
+      }
     }
   }
 })

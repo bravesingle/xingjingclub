@@ -22,10 +22,10 @@ Page({
   },
 
   onShow() {
-    // 自定义 tabBar：玩家角色下订单为第 2 个 tab
+    // 自定义 tabBar：玩家角色下订单为第 3 个 tab
     if (this.getTabBar && this.getTabBar()) {
       this.getTabBar().refresh()
-      this.getTabBar().setData({ selected: 1 })
+      this.getTabBar().setData({ selected: 2 })
     }
     // 个人中心跳转时写入的筛选值
     const tab = wx.getStorageSync('xjes_order_tab')

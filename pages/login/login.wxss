@@ -12,6 +12,55 @@
     radial-gradient(circle at 50% 100%, rgba(248, 199, 107, 0.10), transparent 34%);
 }
 
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.42;
+    transform: scale(0.86);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes starFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12rpx);
+  }
+}
+
+@keyframes shootingMove {
+  0% {
+    opacity: 0;
+    transform: translate3d(100rpx, -40rpx, 0) rotate(-22deg);
+  }
+  14% {
+    opacity: 0.78;
+  }
+  42% {
+    opacity: 0;
+    transform: translate3d(-220rpx, 100rpx, 0) rotate(-22deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-220rpx, 100rpx, 0) rotate(-22deg);
+  }
+}
+
+@keyframes markGlow {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    box-shadow: 0 22rpx 60rpx rgba(99, 230, 247, 0.16);
+  }
+  50% {
+    transform: translateY(-8rpx) rotate(6deg);
+    box-shadow: 0 28rpx 78rpx rgba(99, 230, 247, 0.28);
+  }
+}
+
 .sky-layer {
   position: absolute;
   top: 0;
@@ -25,16 +74,17 @@
   position: absolute;
   color: rgba(244, 247, 251, 0.88);
   text-shadow: 0 0 18rpx rgba(99, 230, 247, 0.7);
+  animation: starTwinkle 3.6s ease-in-out infinite;
 }
 
 .star-a { top: 62rpx; left: 68rpx; font-size: 30rpx; }
-.star-b { top: 168rpx; right: 62rpx; font-size: 38rpx; color: rgba(248, 199, 107, 0.92); }
-.star-c { top: 432rpx; left: 42rpx; font-size: 24rpx; color: rgba(99, 230, 247, 0.82); }
-.star-d { top: 572rpx; right: 86rpx; font-size: 26rpx; }
-.star-e { top: 256rpx; left: 122rpx; font-size: 20rpx; color: rgba(139, 92, 246, 0.86); }
-.star-f { top: 360rpx; right: 34rpx; font-size: 22rpx; }
-.star-g { top: 686rpx; left: 54rpx; font-size: 30rpx; color: rgba(248, 199, 107, 0.78); }
-.star-h { top: 908rpx; right: 48rpx; font-size: 20rpx; color: rgba(99, 230, 247, 0.80); }
+.star-b { top: 168rpx; right: 62rpx; font-size: 38rpx; color: rgba(248, 199, 107, 0.92); animation-delay: 0.4s; }
+.star-c { top: 432rpx; left: 42rpx; font-size: 24rpx; color: rgba(99, 230, 247, 0.82); animation-delay: 1.1s; }
+.star-d { top: 572rpx; right: 86rpx; font-size: 26rpx; animation-delay: 1.7s; }
+.star-e { top: 256rpx; left: 122rpx; font-size: 20rpx; color: rgba(139, 92, 246, 0.86); animation-delay: 2.2s; }
+.star-f { top: 360rpx; right: 34rpx; font-size: 22rpx; animation-delay: 0.9s; }
+.star-g { top: 686rpx; left: 54rpx; font-size: 30rpx; color: rgba(248, 199, 107, 0.78); animation-delay: 1.4s; }
+.star-h { top: 908rpx; right: 48rpx; font-size: 20rpx; color: rgba(99, 230, 247, 0.80); animation-delay: 2.7s; }
 
 .shooting-star {
   position: absolute;
@@ -45,10 +95,11 @@
   transform: rotate(-22deg);
   opacity: 0.72;
   box-shadow: 0 0 18rpx rgba(99, 230, 247, 0.36);
+  animation: shootingMove 5.8s ease-in-out infinite;
 }
 
 .shooting-a { top: 214rpx; left: 320rpx; }
-.shooting-b { top: 792rpx; left: 118rpx; width: 96rpx; opacity: 0.46; }
+.shooting-b { top: 792rpx; left: 118rpx; width: 96rpx; opacity: 0.46; animation-delay: 2.6s; }
 
 .star-dot {
   position: absolute;
@@ -57,20 +108,21 @@
   border-radius: 50%;
   background: rgba(244, 247, 251, 0.88);
   box-shadow: 0 0 16rpx rgba(244, 247, 251, 0.65);
+  animation: starTwinkle 4.6s ease-in-out infinite;
 }
 
 .dot-a { top: 118rpx; left: 246rpx; }
 .dot-b { top: 284rpx; right: 176rpx; width: 8rpx; height: 8rpx; background: var(--primary); }
-.dot-c { top: 720rpx; left: 144rpx; }
-.dot-d { top: 832rpx; right: 232rpx; background: var(--gold); }
-.dot-e { top: 72rpx; right: 228rpx; width: 4rpx; height: 4rpx; }
-.dot-f { top: 238rpx; left: 38rpx; width: 5rpx; height: 5rpx; background: rgba(139, 92, 246, 0.90); }
-.dot-g { top: 394rpx; left: 286rpx; width: 4rpx; height: 4rpx; }
-.dot-h { top: 508rpx; right: 188rpx; width: 6rpx; height: 6rpx; background: var(--primary); }
-.dot-i { top: 624rpx; left: 316rpx; width: 5rpx; height: 5rpx; }
-.dot-j { top: 756rpx; right: 54rpx; width: 4rpx; height: 4rpx; }
-.dot-k { top: 944rpx; left: 236rpx; width: 7rpx; height: 7rpx; background: rgba(248, 199, 107, 0.92); }
-.dot-l { top: 1040rpx; right: 132rpx; width: 4rpx; height: 4rpx; }
+.dot-c { top: 720rpx; left: 144rpx; animation-delay: 0.8s; }
+.dot-d { top: 832rpx; right: 232rpx; background: var(--gold); animation-delay: 1.3s; }
+.dot-e { top: 72rpx; right: 228rpx; width: 4rpx; height: 4rpx; animation-delay: 2.1s; }
+.dot-f { top: 238rpx; left: 38rpx; width: 5rpx; height: 5rpx; background: rgba(139, 92, 246, 0.90); animation-delay: 2.8s; }
+.dot-g { top: 394rpx; left: 286rpx; width: 4rpx; height: 4rpx; animation-delay: 1.9s; }
+.dot-h { top: 508rpx; right: 188rpx; width: 6rpx; height: 6rpx; background: var(--primary); animation-delay: 3.2s; }
+.dot-i { top: 624rpx; left: 316rpx; width: 5rpx; height: 5rpx; animation-delay: 0.5s; }
+.dot-j { top: 756rpx; right: 54rpx; width: 4rpx; height: 4rpx; animation-delay: 2.5s; }
+.dot-k { top: 944rpx; left: 236rpx; width: 7rpx; height: 7rpx; background: rgba(248, 199, 107, 0.92); animation-delay: 1.6s; }
+.dot-l { top: 1040rpx; right: 132rpx; width: 4rpx; height: 4rpx; animation-delay: 3.6s; }
  
 .brand-area,
 .login-card,
@@ -84,6 +136,7 @@
 .brand-area {
   padding: 72rpx 0 44rpx;
   text-align: center;
+  animation: fadeUp 0.62s ease both;
 }
 
 .brand-mark {
@@ -99,6 +152,7 @@
   background: linear-gradient(145deg, rgba(99, 230, 247, 0.18), rgba(139, 92, 246, 0.20));
   border: 2rpx solid rgba(99, 230, 247, 0.26);
   box-shadow: 0 22rpx 60rpx rgba(99, 230, 247, 0.16);
+  animation: markGlow 4.8s ease-in-out infinite;
 }
 
 .brand-title {
@@ -121,6 +175,7 @@
   background: linear-gradient(180deg, rgba(22, 32, 52, 0.92), rgba(13, 19, 32, 0.94));
   border: 2rpx solid rgba(99, 230, 247, 0.18);
   box-shadow: 0 30rpx 70rpx rgba(0, 0, 0, 0.30);
+  animation: fadeUp 0.72s ease 0.08s both;
 }
 
 .login-card-head {
@@ -150,6 +205,7 @@
   justify-content: center;
   color: var(--gold);
   background: rgba(248, 199, 107, 0.12);
+  animation: starFloat 3.2s ease-in-out infinite;
 }
 
 .login-tip {
@@ -197,6 +253,7 @@
   align-items: flex-start;
   margin-top: 28rpx;
   padding: 0 10rpx;
+  animation: fadeUp 0.72s ease 0.16s both;
 }
 
 .agree-check {

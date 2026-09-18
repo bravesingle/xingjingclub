@@ -8,6 +8,8 @@
     "pages/order-list/order-list",
     "pages/order-detail/order-detail",
     "pages/order-refund/order-refund",
+    "pages/booster-select/booster-select",
+    "pages/booster-detail/booster-detail",
     "pages/chat/chat",
     "pages/booster-work/booster-work",
     "pages/booster-chat/booster-chat",

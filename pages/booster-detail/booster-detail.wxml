@@ -1,0 +1,51 @@
+<!-- pages/booster-detail/booster-detail.wxml 打手详情 -->
+<view class="page detail-page" wx:if="{{booster}}">
+  <view class="hero-card">
+    <view class="hero-star">✦</view>
+    <view class="avatar-wrap">
+      <image wx:if="{{booster.avatar}}" class="avatar-img" src="{{booster.avatar}}" mode="aspectFill" />
+      <view wx:else class="avatar-fallback">{{booster.avatarText}}</view>
+    </view>
+    <view class="hero-name">{{booster.displayName}}</view>
+    <view class="hero-sub">ID {{booster.id}} · {{booster.statusText}}</view>
+    <view class="hero-tags">
+      <text class="tag">{{booster.rankText}}</text>
+      <text class="tag tag-gold">{{booster.rating}} 分</text>
+      <text class="tag">{{booster.orderCountText}} 单</text>
+    </view>
+  </view>
+
+  <view class="card info-card">
+    <view class="info-row">
+      <text class="text-sub">玩家昵称</text>
+      <text>{{booster.playerNameText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="text-sub">游戏ID</text>
+      <text>{{booster.gameIdText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="text-sub">擅长方向</text>
+      <text class="info-value">{{booster.categoryText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="text-sub">加入时间</text>
+      <text>{{booster.joinedText}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">个人简介</view>
+    <view class="remark">{{booster.remarkText}}</view>
+  </view>
+
+  <view class="footer-placeholder"></view>
+  <view class="footer-bar">
+    <view class="btn btn-ghost" bindtap="onBack">返回</view>
+    <view class="btn btn-gold" bindtap="onGoServices">去下单</view>
+  </view>
+</view>
+
+<view class="page" wx:elif="{{!loading}}">
+  <empty text="未找到打手资料" subText="可能已下线或审核状态变化" />
+</view>

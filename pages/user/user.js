@@ -18,10 +18,12 @@ Page({
   },
 
   onShow() {
-    // 自定义 tabBar：玩家/服务方角色下"我的"均为第 3 个 tab
+    // 自定义 tabBar：玩家"我的"第 4 个；服务方"我的"第 3 个
     if (this.getTabBar && this.getTabBar()) {
+      const userInfo = auth.getUserInfo()
+      const selected = userInfo && userInfo.role === 'booster' ? 2 : 3
       this.getTabBar().refresh()
-      this.getTabBar().setData({ selected: 2 })
+      this.getTabBar().setData({ selected: selected })
     }
     this.loadUser()
     this.loadCounts()

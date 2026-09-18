@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "打手资料",
+  "usingComponents": {
+    "empty": "../../components/empty/empty"
+  }
+}

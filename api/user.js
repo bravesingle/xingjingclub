@@ -95,9 +95,13 @@ function getUserInfo() {
 }
 
 /** 更新用户信息 */
-function updateUserInfo(patch) {
+async function updateUserInfo(patch) {
   if (useMock()) return Promise.resolve(mock.updateUser(patch))
-  return request.post('/user/info', patch)
+  const userInfo = await request.post('/user/info', patch)
+  if (userInfo) {
+    auth.setUserInfo(userInfo)
+  }
+  return userInfo
 }
 
 /** 退出登录（清除本地登录态 + 匿名ID，下次登录为全新身份） */

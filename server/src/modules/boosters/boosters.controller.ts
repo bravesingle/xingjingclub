@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Public } from '../../common/decorators/public.decorator'
 import { BoostersService } from './boosters.service'
@@ -11,7 +11,13 @@ export class BoostersController {
 
   @Get()
   @ApiOperation({ summary: '可接单打手列表（已审核 + 在线）' })
-  list() {
-    return this.boostersService.listForUser()
+  list(@Query('keyword') keyword?: string) {
+    return this.boostersService.listForUser(keyword || '')
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: '可接单打手详情' })
+  detail(@Param('id', ParseIntPipe) id: number) {
+    return this.boostersService.getForUser(id)
   }
 }

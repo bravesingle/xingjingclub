@@ -1,0 +1,97 @@
+/* pages/booster-detail/booster-detail.wxss */
+
+.detail-page {
+  padding-bottom: 180rpx;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  padding: 42rpx 28rpx 34rpx;
+  border-radius: 34rpx;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(99, 230, 247, 0.22), transparent 42%),
+    linear-gradient(180deg, rgba(24, 34, 56, 0.96), rgba(17, 24, 39, 0.96));
+  border: 2rpx solid rgba(99, 230, 247, 0.18);
+  box-shadow: 0 22rpx 54rpx rgba(0, 0, 0, 0.24);
+}
+
+.hero-star {
+  position: absolute;
+  top: 24rpx;
+  right: 34rpx;
+  color: var(--gold);
+  font-size: 34rpx;
+  text-shadow: 0 0 18rpx rgba(248, 199, 107, 0.36);
+}
+
+.avatar-wrap,
+.avatar-img,
+.avatar-fallback {
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 44rpx;
+}
+
+.avatar-wrap {
+  margin: 0 auto;
+  overflow: hidden;
+  background: linear-gradient(135deg, #63E6F7, #8B5CF6);
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #07111D;
+  font-size: 58rpx;
+  font-weight: 800;
+}
+
+.hero-name {
+  margin-top: 24rpx;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.hero-sub {
+  margin-top: 8rpx;
+  color: var(--text-sub);
+  font-size: 26rpx;
+}
+
+.hero-tags {
+  margin-top: 20rpx;
+}
+
+.info-card {
+  margin-top: 22rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--line);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-value {
+  max-width: 420rpx;
+  text-align: right;
+}
+
+.remark {
+  color: var(--text-sub);
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.footer-placeholder {
+  height: 160rpx;
+}
